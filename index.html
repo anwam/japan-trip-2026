@@ -1,0 +1,2501 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🇯🇵 Japan Trip — April 13–19, 2026</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    :root {
+      --bg: #faf9f6;
+      --card: #ffffff;
+      --accent: #c0392b;
+      --accent2: #e74c3c;
+      --text: #2c2c2c;
+      --muted: #6b7280;
+      --border: #e5e7eb;
+      --sakura: #f8c8d4;
+      --sakura-dark: #e8879e;
+      --tag-bg: #fef3f2;
+      --tag-text: #b91c1c;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+      color: white;
+      text-align: center;
+      padding: 60px 20px 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '🌸';
+      position: absolute;
+      font-size: 200px;
+      opacity: 0.05;
+      top: -30px;
+      right: -30px;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 8px;
+    }
+
+    .hero .subtitle {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      margin-bottom: 16px;
+    }
+
+    .hero .meta {
+      display: flex;
+      gap: 24px;
+      justify-content: center;
+      flex-wrap: wrap;
+      font-size: 0.9rem;
+      opacity: 0.75;
+    }
+
+    .hero .meta span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Navigation */
+    .nav {
+      background: var(--card);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      gap: 4px;
+      padding: 8px 16px;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--muted);
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      transition: all 0.2s;
+      flex-shrink: 0;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: var(--tag-bg);
+      color: var(--accent);
+    }
+
+    /* Container */
+    .container {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Section */
+    .section {
+      padding: 40px 0;
+    }
+
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .section-title .icon {
+      font-size: 1.4rem;
+    }
+
+    /* Map */
+    #main-map {
+      height: 450px;
+      border-radius: 16px;
+      border: 2px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    .map-legend {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+      font-size: 0.85rem;
+    }
+
+    .map-legend span {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .legend-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    /* Day cards */
+    .day-card {
+      background: var(--card);
+      border-radius: 16px;
+      border: 1px solid var(--border);
+      margin-bottom: 20px;
+      overflow: hidden;
+      transition: box-shadow 0.2s;
+    }
+
+    .day-card:hover {
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.06);
+    }
+
+    .day-header {
+      padding: 20px 24px;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      user-select: none;
+    }
+
+    .day-header:hover {
+      background: #fafafa;
+    }
+
+    .day-num {
+      background: var(--accent);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-right: 12px;
+    }
+
+    .day-title {
+      font-size: 1.15rem;
+      font-weight: 600;
+      flex: 1;
+    }
+
+    .day-date {
+      color: var(--muted);
+      font-size: 0.85rem;
+    }
+
+    .day-toggle {
+      font-size: 1.2rem;
+      color: var(--muted);
+      transition: transform 0.3s;
+    }
+
+    .day-card.open .day-toggle {
+      transform: rotate(180deg);
+    }
+
+    .day-body {
+      display: none;
+      padding: 0 24px 24px;
+    }
+
+    .day-card.open .day-body {
+      display: block;
+    }
+
+    /* Mini map per day */
+    .day-map {
+      height: 280px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 16px;
+    }
+
+    /* Schedule table */
+    .schedule {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 16px;
+    }
+
+    .schedule th {
+      text-align: left;
+      padding: 8px 12px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      border-bottom: 2px solid var(--border);
+    }
+
+    .schedule td {
+      padding: 10px 12px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.9rem;
+      vertical-align: top;
+    }
+
+    .schedule tr:last-child td {
+      border-bottom: none;
+    }
+
+    .schedule .time {
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+      width: 100px;
+    }
+
+    /* Tags */
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      background: var(--tag-bg);
+      color: var(--tag-text);
+      padding: 4px 12px;
+      border-radius: 20px;
+      font-size: 0.78rem;
+      font-weight: 500;
+    }
+
+    .tag.eat {
+      background: #fef9c3;
+      color: #854d0e;
+    }
+
+    .tag.see {
+      background: #e0f2fe;
+      color: #075985;
+    }
+
+    .tag.shop {
+      background: #f0fdf4;
+      color: #166534;
+    }
+
+    /* Tips */
+    .tip-box {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.88rem;
+      margin-top: 12px;
+    }
+
+    /* Restaurant & cafe tables */
+    .data-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: var(--card);
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin-bottom: 24px;
+    }
+
+    .data-table caption {
+      text-align: left;
+      padding: 16px;
+      font-weight: 700;
+      font-size: 1.1rem;
+      background: #f9fafb;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .data-table th {
+      text-align: left;
+      padding: 10px 14px;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      color: var(--muted);
+      background: #f9fafb;
+      border-bottom: 2px solid var(--border);
+    }
+
+    .data-table td {
+      padding: 10px 14px;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.88rem;
+    }
+
+    .data-table tr:last-child td {
+      border-bottom: none;
+    }
+
+    .data-table tr:hover td {
+      background: #fafafa;
+    }
+
+    /* Tabs for restaurants */
+    .tab-nav {
+      display: flex;
+      gap: 4px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .tab-btn {
+      padding: 8px 16px;
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      background: var(--card);
+      cursor: pointer;
+      font-size: 0.85rem;
+      font-weight: 500;
+      color: var(--muted);
+      transition: all 0.2s;
+    }
+
+    .tab-btn:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    .tab-btn.active {
+      background: var(--accent);
+      color: white;
+      border-color: var(--accent);
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    /* Checklist */
+    .checklist {
+      list-style: none;
+    }
+
+    .checklist li {
+      padding: 10px 0;
+      border-bottom: 1px solid var(--border);
+      font-size: 0.92rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .checklist li:last-child {
+      border-bottom: none;
+    }
+
+    .checklist input[type="checkbox"] {
+      margin-top: 4px;
+      accent-color: var(--accent);
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Restaurant Cards */
+    .resto-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .resto-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 18px;
+      transition: box-shadow 0.2s, transform 0.15s;
+      position: relative;
+    }
+
+    .resto-card:hover {
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.07);
+      transform: translateY(-2px);
+    }
+
+    .resto-name {
+      font-size: 1rem;
+      font-weight: 700;
+      margin-bottom: 2px;
+    }
+
+    .resto-name-jp {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .resto-meta {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+
+    .resto-type {
+      background: #f3f4f6;
+      color: #374151;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .resto-area {
+      background: #eff6ff;
+      color: #1d4ed8;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .resto-budget {
+      background: #fef3c7;
+      color: #92400e;
+      padding: 2px 10px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 500;
+    }
+
+    .resto-ratings {
+      display: flex;
+      gap: 12px;
+      margin: 10px 0;
+      align-items: center;
+    }
+
+    .rating-badge {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+    }
+
+    .rating-tabelog {
+      background: #fff1f2;
+      color: #be123c;
+    }
+
+    .rating-google {
+      background: #f0fdf4;
+      color: #166534;
+    }
+
+    .rating-badge .score {
+      font-size: 0.95rem;
+    }
+
+    .rating-badge .label {
+      font-weight: 400;
+      font-size: 0.72rem;
+      opacity: 0.8;
+    }
+
+    .resto-review {
+      font-size: 0.83rem;
+      color: #4b5563;
+      line-height: 1.5;
+      margin: 8px 0;
+      padding: 8px 12px;
+      background: #f9fafb;
+      border-radius: 8px;
+      border-left: 3px solid var(--border);
+    }
+
+    .resto-review strong {
+      color: var(--text);
+    }
+
+    .resto-tip {
+      font-size: 0.78rem;
+      color: var(--accent);
+      font-weight: 500;
+      margin-top: 6px;
+    }
+
+    .resto-links {
+      display: flex;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .resto-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 12px;
+      border-radius: 6px;
+      font-size: 0.75rem;
+      font-weight: 500;
+      text-decoration: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      transition: all 0.15s;
+    }
+
+    .resto-link:hover {
+      background: #f3f4f6;
+    }
+
+    .resto-link.tabelog {
+      border-color: #fca5a5;
+      color: #be123c;
+    }
+
+    .resto-link.tabelog:hover {
+      background: #fff1f2;
+    }
+
+    .resto-link.gmaps {
+      border-color: #86efac;
+      color: #166534;
+    }
+
+    .resto-link.gmaps:hover {
+      background: #f0fdf4;
+    }
+
+    .must-try {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      background: #fef08a;
+      color: #854d0e;
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 2px 8px;
+      border-radius: 6px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    /* Budget */
+    .budget-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 16px;
+      margin-bottom: 16px;
+    }
+
+    .budget-item {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .budget-item .amount {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--accent);
+    }
+
+    .budget-item .label {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--muted);
+      font-size: 0.85rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* Responsive */
+    @media (max-width: 640px) {
+      .hero h1 {
+        font-size: 1.8rem;
+      }
+
+      #main-map,
+      .day-map {
+        height: 300px;
+      }
+
+      .day-header {
+        padding: 16px;
+      }
+
+      .day-body {
+        padding: 0 16px 16px;
+      }
+
+      .schedule .time {
+        width: 80px;
+      }
+
+      .data-table td,
+      .data-table th {
+        padding: 8px 10px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HERO -->
+  <header class="hero">
+    <h1>🇯🇵 Japan Trip 2026</h1>
+    <p class="subtitle">Osaka · Nara · Uji · Kyoto · Kobe · USJ</p>
+    <div class="meta">
+      <span>📅 April 13–19, 2026</span>
+      <span>✈️ DMK → KIX</span>
+      <span>🏨 Far East Village Hotel Osaka</span>
+    </div>
+  </header>
+
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="nav-inner">
+      <a href="#map">🗺️ Map</a>
+      <a href="#itinerary">📋 Itinerary</a>
+      <a href="#food">🍜 Food Guide</a>
+      <a href="#shopping">🛍️ Shopping</a>
+      <a href="#checklist">✅ Checklist</a>
+      <a href="#budget">💰 Budget</a>
+    </div>
+  </nav>
+
+  <div class="container">
+
+    <!-- MAP SECTION -->
+    <section class="section" id="map">
+      <h2 class="section-title"><span class="icon">🗺️</span> Interactive Map</h2>
+      <div id="main-map"></div>
+      <div class="map-legend">
+        <span><span class="legend-dot" style="background:#e74c3c"></span> Hotel (Base)</span>
+        <span><span class="legend-dot" style="background:#3498db"></span> Temples & Shrines</span>
+        <span><span class="legend-dot" style="background:#2ecc71"></span> Food & Markets</span>
+        <span><span class="legend-dot" style="background:#9b59b6"></span> Attractions</span>
+        <span><span class="legend-dot" style="background:#f39c12"></span> Shopping</span>
+        <span><span class="legend-dot" style="background:#1abc9c"></span> Transport Hubs</span>
+      </div>
+    </section>
+
+    <!-- ITINERARY SECTION -->
+    <section class="section" id="itinerary">
+      <h2 class="section-title"><span class="icon">📋</span> Day-by-Day Itinerary</h2>
+
+      <!-- Day 1 -->
+      <div class="day-card open" data-day="1">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div style="display:flex;align-items:center">
+            <span class="day-num">Day 1</span>
+            <span class="day-title">Arrival + Namba Night</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <span class="day-date">Mon, Apr 13</span>
+            <span class="day-toggle">▾</span>
+          </div>
+        </div>
+        <div class="day-body">
+          <div class="day-map" id="map-day1"></div>
+          <table class="schedule">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time">10:30</td>
+                <td>Depart DMK ✈️</td>
+              </tr>
+              <tr>
+                <td class="time">18:25</td>
+                <td>Arrive KIX — pick up ICOCA card, pocket WiFi/SIM</td>
+              </tr>
+              <tr>
+                <td class="time">19:15</td>
+                <td>Nankai Rapi:t to Namba</td>
+              </tr>
+              <tr>
+                <td class="time">20:00</td>
+                <td>Check in Far East Village Hotel Osaka</td>
+              </tr>
+              <tr>
+                <td class="time">20:30</td>
+                <td><strong>Dotonbori Night Walk</strong> — Glico sign, canal walk, street food</td>
+              </tr>
+              <tr>
+                <td class="time">21:00</td>
+                <td>Dinner at Dotonbori</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="tags">
+            <span class="tag eat">🍴 Creo-Ru Takoyaki</span>
+            <span class="tag eat">🍴 Chao Chao Gyoza</span>
+            <span class="tag eat">🍴 Mizuno Okonomiyaki</span>
+            <span class="tag see">📸 Glico Running Man</span>
+            <span class="tag see">📸 Dotonbori Canal</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 2 -->
+      <div class="day-card" data-day="2">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div style="display:flex;align-items:center">
+            <span class="day-num">Day 2</span>
+            <span class="day-title">Universal Studio Japan 🎢</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <span class="day-date">Tue, Apr 14</span>
+            <span class="day-toggle">▾</span>
+          </div>
+        </div>
+        <div class="day-body">
+          <div class="day-map" id="map-day2"></div>
+          <table class="schedule">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time">07:30</td>
+                <td>Early breakfast at hotel / convenience store</td>
+              </tr>
+              <tr>
+                <td class="time">08:30</td>
+                <td>Arrive USJ (park opens 09:00 — arrive early!)</td>
+              </tr>
+              <tr>
+                <td class="time">09:00–18:00</td>
+                <td>Full day at USJ</td>
+              </tr>
+              <tr>
+                <td class="time">18:30</td>
+                <td>Dinner near Universal CityWalk</td>
+              </tr>
+              <tr>
+                <td class="time">20:00</td>
+                <td>Return to hotel</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="tags">
+            <span class="tag see">🧙 Harry Potter World</span>
+            <span class="tag see">🎬 Super Nintendo World</span>
+            <span class="tag see">🦖 Jurassic World</span>
+            <span class="tag see">🎢 Hollywood Dream</span>
+            <span class="tag eat">🍺 Butterbeer</span>
+            <span class="tag eat">🍄 Mario Cafe</span>
+          </div>
+          <div class="tip-box">
+            💡 <strong>Tips:</strong> Buy Express Pass in advance (sells out!). Download USJ app for wait times. Line up
+            at rope drop for Super Nintendo World.
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 3 -->
+      <div class="day-card" data-day="3">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div style="display:flex;align-items:center">
+            <span class="day-num">Day 3</span>
+            <span class="day-title">Nara Day Trip 🦌</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <span class="day-date">Wed, Apr 15</span>
+            <span class="day-toggle">▾</span>
+          </div>
+        </div>
+        <div class="day-body">
+          <div class="day-map" id="map-day3"></div>
+          <table class="schedule">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time">08:30</td>
+                <td>Kintetsu Namba → Kintetsu Nara (~35 min)</td>
+              </tr>
+              <tr>
+                <td class="time">09:15</td>
+                <td>Walk through Nara Park — feed the deer 🦌</td>
+              </tr>
+              <tr>
+                <td class="time">10:00</td>
+                <td><strong>Todai-ji Temple</strong> — Great Buddha Hall</td>
+              </tr>
+              <tr>
+                <td class="time">11:00</td>
+                <td><strong>Nigatsu-do Hall</strong> — panoramic view of Nara</td>
+              </tr>
+              <tr>
+                <td class="time">11:30</td>
+                <td><strong>Kasuga Taisha</strong> — thousands of stone lanterns</td>
+              </tr>
+              <tr>
+                <td class="time">12:30</td>
+                <td>Lunch in Naramachi</td>
+              </tr>
+              <tr>
+                <td class="time">14:00</td>
+                <td>Explore <strong>Naramachi</strong> — machiya townhouses, shops</td>
+              </tr>
+              <tr>
+                <td class="time">15:00</td>
+                <td><strong>Kofuku-ji Temple</strong> — five-story pagoda</td>
+              </tr>
+              <tr>
+                <td class="time">16:30</td>
+                <td>Train back to Osaka</td>
+              </tr>
+              <tr>
+                <td class="time">17:30</td>
+                <td><strong>Shinsekai district</strong> — retro Osaka, Tsutenkaku Tower</td>
+              </tr>
+              <tr>
+                <td class="time">19:00</td>
+                <td>Dinner at Shinsekai</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="tags">
+            <span class="tag eat">🍡 Nakatanidou Mochi</span>
+            <span class="tag eat">🍣 Kakinoha Sushi</span>
+            <span class="tag eat">🍢 Kushikatsu Daruma</span>
+            <span class="tag see">⛩️ Todai-ji</span>
+            <span class="tag see">⛩️ Kasuga Taisha</span>
+            <span class="tag see">🗼 Tsutenkaku Tower</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 4 -->
+      <div class="day-card" data-day="4">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div style="display:flex;align-items:center">
+            <span class="day-num">Day 4</span>
+            <span class="day-title">Kyoto Day Trip 🚅</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <span class="day-date">Thu, Apr 16</span>
+            <span class="day-toggle">▾</span>
+          </div>
+        </div>
+        <div class="day-body">
+          <div class="day-map" id="map-day4"></div>
+          <table class="schedule">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time">07:30</td>
+                <td>JR to Shin-Osaka → <strong>Shinkansen to Kyoto</strong> 🚅</td>
+              </tr>
+              <tr>
+                <td class="time">08:30</td>
+                <td><strong>Fushimi Inari Taisha</strong> — thousand torii gates</td>
+              </tr>
+              <tr>
+                <td class="time">10:30</td>
+                <td><strong>Kiyomizu-dera Temple</strong> — wooden stage with city views</td>
+              </tr>
+              <tr>
+                <td class="time">11:30</td>
+                <td>Walk <strong>Ninenzaka & Sannenzaka</strong></td>
+              </tr>
+              <tr>
+                <td class="time">12:30</td>
+                <td>Lunch in Gion area</td>
+              </tr>
+              <tr>
+                <td class="time">13:30</td>
+                <td><strong>Gion District</strong> — geisha quarter</td>
+              </tr>
+              <tr>
+                <td class="time">14:30</td>
+                <td><strong>Kinkaku-ji</strong> (Golden Pavilion) ✨</td>
+              </tr>
+              <tr>
+                <td class="time">15:30</td>
+                <td><strong>Arashiyama Bamboo Grove</strong> + Togetsukyo Bridge</td>
+              </tr>
+              <tr>
+                <td class="time">17:30</td>
+                <td><strong>Nishiki Market</strong> — "Kyoto's Kitchen"</td>
+              </tr>
+              <tr>
+                <td class="time">19:00</td>
+                <td>Shinkansen back to Osaka</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="tags">
+            <span class="tag see">⛩️ Fushimi Inari</span>
+            <span class="tag see">⛩️ Kiyomizu-dera</span>
+            <span class="tag see">✨ Kinkaku-ji</span>
+            <span class="tag see">🎋 Arashiyama Bamboo</span>
+            <span class="tag eat">🍜 Ippudo Ramen</span>
+            <span class="tag eat">🍵 Tsujiri Matcha</span>
+            <span class="tag eat">🛒 Nishiki Market</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 5 -->
+      <div class="day-card" data-day="5">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div style="display:flex;align-items:center">
+            <span class="day-num">Day 5</span>
+            <span class="day-title">Uji + Osaka South 🍵</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <span class="day-date">Fri, Apr 17</span>
+            <span class="day-toggle">▾</span>
+          </div>
+        </div>
+        <div class="day-body">
+          <div class="day-map" id="map-day5"></div>
+          <table class="schedule">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time">08:30</td>
+                <td>Train to <strong>Uji</strong> (~45 min)</td>
+              </tr>
+              <tr>
+                <td class="time">09:30</td>
+                <td><strong>Byodo-in Temple</strong> — the temple on the ¥10 coin!</td>
+              </tr>
+              <tr>
+                <td class="time">10:30</td>
+                <td>Stroll along <strong>Uji River</strong></td>
+              </tr>
+              <tr>
+                <td class="time">11:00</td>
+                <td><strong>Uji-gami Shrine</strong> — oldest shrine in Japan</td>
+              </tr>
+              <tr>
+                <td class="time">11:30</td>
+                <td>Matcha tasting on Uji Omotesando Street</td>
+              </tr>
+              <tr>
+                <td class="time">12:30</td>
+                <td>Matcha lunch — soba, parfait, everything matcha 🍵</td>
+              </tr>
+              <tr>
+                <td class="time">14:00</td>
+                <td>Return to Osaka</td>
+              </tr>
+              <tr>
+                <td class="time">14:30</td>
+                <td><strong>Osaka Castle</strong> + Nishinomaru Garden</td>
+              </tr>
+              <tr>
+                <td class="time">16:00</td>
+                <td><strong>Kuromon Market</strong> — sashimi, tamagoyaki, fruit</td>
+              </tr>
+              <tr>
+                <td class="time">17:30</td>
+                <td><strong>Namba Parks</strong> — rooftop garden</td>
+              </tr>
+              <tr>
+                <td class="time">18:30</td>
+                <td>Dinner at Namba</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="tags">
+            <span class="tag see">⛩️ Byodo-in</span>
+            <span class="tag see">🏯 Osaka Castle</span>
+            <span class="tag eat">🍵 Nakamura Tokichi</span>
+            <span class="tag eat">🍵 Tsuen Tea</span>
+            <span class="tag eat">🐟 Kuromon Market</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 6 -->
+      <div class="day-card" data-day="6">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div style="display:flex;align-items:center">
+            <span class="day-num">Day 6</span>
+            <span class="day-title">Kobe Day Trip 🥩</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <span class="day-date">Sat, Apr 18</span>
+            <span class="day-toggle">▾</span>
+          </div>
+        </div>
+        <div class="day-body">
+          <div class="day-map" id="map-day6"></div>
+          <table class="schedule">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time">09:00</td>
+                <td>JR Osaka → Sannomiya (~20 min)</td>
+              </tr>
+              <tr>
+                <td class="time">09:30</td>
+                <td><strong>Kitano Ijinkan</strong> — Western-style heritage houses</td>
+              </tr>
+              <tr>
+                <td class="time">11:00</td>
+                <td><strong>Kobe Nunobiki Herb Garden</strong> — ropeway bay views</td>
+              </tr>
+              <tr>
+                <td class="time">12:30</td>
+                <td><strong>KOBE BEEF LUNCH</strong> — A5 Wagyu 🥩</td>
+              </tr>
+              <tr>
+                <td class="time">14:00</td>
+                <td><strong>Nankinmachi</strong> (Kobe Chinatown) — nikuman buns</td>
+              </tr>
+              <tr>
+                <td class="time">15:00</td>
+                <td><strong>Meriken Park</strong> — Port Tower, BE KOBE sign</td>
+              </tr>
+              <tr>
+                <td class="time">16:00</td>
+                <td><strong>Kobe Harborland / Mosaic</strong> — shopping</td>
+              </tr>
+              <tr>
+                <td class="time">17:30</td>
+                <td>Return to Osaka</td>
+              </tr>
+              <tr>
+                <td class="time">18:00</td>
+                <td><strong>Amerikamura</strong> — youth fashion, vinyl shops</td>
+              </tr>
+              <tr>
+                <td class="time">19:00</td>
+                <td><strong>Shinsaibashi-suji</strong> — 600m shopping arcade</td>
+              </tr>
+              <tr>
+                <td class="time">20:00</td>
+                <td>Final big dinner in Dotonbori</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="tags">
+            <span class="tag eat">🥩 Mouriya Kobe Beef</span>
+            <span class="tag eat">🥟 Roshoki Nikuman</span>
+            <span class="tag see">📸 BE KOBE sign</span>
+            <span class="tag shop">🛍️ Amerikamura</span>
+            <span class="tag shop">🛍️ Shinsaibashi</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Day 7 -->
+      <div class="day-card" data-day="7">
+        <div class="day-header" onclick="toggleDay(this)">
+          <div style="display:flex;align-items:center">
+            <span class="day-num">Day 7</span>
+            <span class="day-title">Namba Shopping + Departure ✈️</span>
+          </div>
+          <div style="display:flex;align-items:center;gap:16px">
+            <span class="day-date">Sun, Apr 19</span>
+            <span class="day-toggle">▾</span>
+          </div>
+        </div>
+        <div class="day-body">
+          <div class="day-map" id="map-day7"></div>
+          <table class="schedule">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Activity</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="time">09:00</td>
+                <td>Sleep in, hotel breakfast</td>
+              </tr>
+              <tr>
+                <td class="time">10:00</td>
+                <td>Namba / Shinsaibashi last-minute shopping</td>
+              </tr>
+              <tr>
+                <td class="time">10:30</td>
+                <td><strong>Don Quijote</strong> — snacks, cosmetics, gifts</td>
+              </tr>
+              <tr>
+                <td class="time">11:00</td>
+                <td><strong>Daimaru / Takashimaya</strong> — tax-free floor</td>
+              </tr>
+              <tr>
+                <td class="time">12:00</td>
+                <td>Lunch</td>
+              </tr>
+              <tr>
+                <td class="time">13:00</td>
+                <td><strong>Den Den Town</strong> — anime, figures, retro games</td>
+              </tr>
+              <tr>
+                <td class="time">14:30</td>
+                <td><strong>Hozenji Yokocho</strong> — atmospheric stone alley</td>
+              </tr>
+              <tr>
+                <td class="time">15:00</td>
+                <td>Final matcha / coffee break ☕</td>
+              </tr>
+              <tr>
+                <td class="time">16:30</td>
+                <td>Nankai Rapi:t to KIX (~38 min)</td>
+              </tr>
+              <tr>
+                <td class="time">19:55</td>
+                <td>Depart KIX → DMK ✈️</td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="tags">
+            <span class="tag shop">🛍️ Don Quijote</span>
+            <span class="tag shop">🛍️ Daimaru</span>
+            <span class="tag shop">🎮 Den Den Town</span>
+            <span class="tag see">⛩️ Hozenji Yokocho</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FOOD GUIDE -->
+    <section class="section" id="food">
+      <h2 class="section-title"><span class="icon">🍜</span> Restaurant & Cafe Guide</h2>
+      <p style="color:var(--muted);font-size:0.85rem;margin:-16px 0 20px">Ratings from <strong
+          style="color:#be123c">Tabelog</strong> (Japan's top review site, score 3.5+ = excellent) and <strong
+          style="color:#166534">Google Maps</strong>. Click links to read full reviews.</p>
+
+      <div class="tab-nav">
+        <button class="tab-btn active" onclick="switchTab(event,'tab-osaka')">🏙️ Osaka</button>
+        <button class="tab-btn" onclick="switchTab(event,'tab-cafes')">☕ Cafes & Sweets</button>
+        <button class="tab-btn" onclick="switchTab(event,'tab-kyoto')">⛩️ Kyoto</button>
+        <button class="tab-btn" onclick="switchTab(event,'tab-nara')">🦌 Nara</button>
+        <button class="tab-btn" onclick="switchTab(event,'tab-uji')">🍵 Uji</button>
+        <button class="tab-btn" onclick="switchTab(event,'tab-kobe')">🥩 Kobe</button>
+      </div>
+
+      <!-- OSAKA RESTAURANTS -->
+      <div class="tab-content active" id="tab-osaka">
+        <div class="resto-grid">
+
+          <div class="resto-card">
+            <span class="must-try">Must Try</span>
+            <div class="resto-name">Mizuno (美津の)</div>
+            <div class="resto-name-jp">みずの — Est. 1945</div>
+            <div class="resto-meta">
+              <span class="resto-type">Okonomiyaki</span>
+              <span class="resto-area">📍 Dotonbori</span>
+              <span class="resto-budget">¥1,200–1,800</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.58</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.3</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Legendary 80-year-old okonomiyaki institution. The yamaimo-yaki
+              (mountain yam) creates an impossibly fluffy texture. Often a 30-60 min queue but it moves fast. Counter
+              seats let you watch masters at work. "Best okonomiyaki I've ever had" is a common refrain.
+            </div>
+            <div class="resto-tip">💡 Order the Yamaimo-yaki Mix (yam + seafood). Go before 11:30 or after 14:00 to
+              avoid peak queue.</div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%E7%BE%8E%E6%B4%A5%E3%81%AE+%E9%81%93%E9%A0%93%E5%A0%80"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Mizuno+okonomiyaki+Dotonbori+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Creo-Ru (くれおーる)</div>
+            <div class="resto-name-jp">くれおーる道頓堀店</div>
+            <div class="resto-meta">
+              <span class="resto-type">Takoyaki</span>
+              <span class="resto-area">📍 Dotonbori</span>
+              <span class="resto-budget">¥600–800</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.17</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.0</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Solid takoyaki option right on the canal. Crispy outside, creamy
+              inside. You can get both takoyaki and okonomiyaki here. It's a tourist-friendly spot with English menus
+              and outdoor seating. Not the most "local" pick, but reliably good and convenient.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%E3%81%8F%E3%82%8C%E3%81%8A%E3%83%BC%E3%82%8B+%E9%81%93%E9%A0%93%E5%A0%80"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Creo-Ru+takoyaki+Dotonbori+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <span class="must-try">Must Try</span>
+            <div class="resto-name">Kushikatsu Daruma (だるま)</div>
+            <div class="resto-name-jp">串かつだるま — Est. 1929</div>
+            <div class="resto-meta">
+              <span class="resto-type">Kushikatsu</span>
+              <span class="resto-area">📍 Shinsekai</span>
+              <span class="resto-budget">¥1,000–2,000</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.46</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.2</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> The most iconic kushikatsu chain in Osaka, almost 100 years old. The
+              deep-fried skewers are light and perfectly crispy. The angry chef mascot is a Shinsekai landmark.
+              Reviewers love the fun atmosphere and the strict "NO double-dipping in the sauce!" rule. Great value.
+            </div>
+            <div class="resto-tip">💡 Try the set course for variety. The Shinsekai main branch has the best atmosphere.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%E4%B8%B2%E3%81%8B%E3%81%A4%E3%81%A0%E3%82%8B%E3%81%BE+%E6%96%B0%E4%B8%96%E7%95%8C"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Kushikatsu+Daruma+Shinsekai+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Ichiran Ramen</div>
+            <div class="resto-name-jp">一蘭 道頓堀店</div>
+            <div class="resto-meta">
+              <span class="resto-type">Ramen</span>
+              <span class="resto-area">📍 Dotonbori</span>
+              <span class="resto-budget">¥980</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.28</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.3</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Famous for individual booths — you eat alone with a curtain, focused
+              purely on ramen. Customize spice, richness, noodle firmness via a form. The tonkotsu broth is creamy and
+              consistent. Japanese locals consider it "decent chain ramen," but tourists love the unique experience.
+              Long queues at peak hours.
+            </div>
+            <div class="resto-tip">💡 Go late night (open 24h at Dotonbori) to avoid queues.</div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%E4%B8%80%E8%98%AD+%E9%81%93%E9%A0%93%E5%A0%80"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Ichiran+Ramen+Dotonbori+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <span class="must-try">Splurge</span>
+            <div class="resto-name">Matsusakagyu Yakiniku M</div>
+            <div class="resto-name-jp">松阪牛焼肉M 法善寺横丁店</div>
+            <div class="resto-meta">
+              <span class="resto-type">Yakiniku</span>
+              <span class="resto-area">📍 Namba</span>
+              <span class="resto-budget">¥3,000–8,000</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.55</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.4</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Exceptional A5 Matsusaka wagyu (considered the top tier in Japan,
+              above even Kobe beef) at surprisingly fair prices. The lunch sets are incredible value for the quality.
+              Tabelog reviewers praise the melt-in-your-mouth texture. Google reviews highlight friendly
+              English-speaking staff. One of the top-rated yakiniku in Namba.
+            </div>
+            <div class="resto-tip">💡 Lunch sets (¥3,000~) are the best value. Reserve 2-3 days ahead.</div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%E6%9D%BE%E9%98%AA%E7%89%9B%E7%84%BC%E8%82%89M+%E6%B3%95%E5%96%84%E5%AF%BA%E6%A8%AA%E4%B8%81"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Matsusakagyu+Yakiniku+M+Namba+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <span class="must-try">Iconic</span>
+            <div class="resto-name">Rikuro Ojisan (りくろーおじさん)</div>
+            <div class="resto-name-jp">りくろーおじさんの店 なんば本店</div>
+            <div class="resto-meta">
+              <span class="resto-type">Bakery</span>
+              <span class="resto-area">📍 Namba</span>
+              <span class="resto-budget">¥965</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.60</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.3</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Osaka's most beloved cheesecake — wobbly, jiggly, and only ¥965 for a
+              whole cake! You'll see the queue of locals daily. It's light, fluffy, not too sweet, with a bottom layer
+              of raisins. Best eaten warm on the day. Tabelog reviewers call it "the taste of Osaka" and a must-buy
+              omiyage (souvenir). An absolute icon.
+            </div>
+            <div class="resto-tip">💡 Buy at Namba station branch for your last day — eat warm or gift to friends!</div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%E3%82%8A%E3%81%8F%E3%82%8D%E3%83%BC%E3%81%8A%E3%81%98%E3%81%95%E3%82%93+%E3%81%AA%E3%82%93%E3%81%B0"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Rikuro+Ojisan+Namba+cheesecake"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Kuromon Market Stalls</div>
+            <div class="resto-name-jp">黒門市場 — "Osaka's Kitchen"</div>
+            <div class="resto-meta">
+              <span class="resto-type">Market</span>
+              <span class="resto-area">📍 Nipponbashi</span>
+              <span class="resto-budget">¥500–2,000</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-google"><span class="score">4.1</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> A 150-year-old market with 170+ stalls. Fresh sashimi, grilled
+              seafood, tamagoyaki, and seasonal fruit. Google reviewers warn it's become more touristy and pricey
+              (especially for sashimi). Still worth visiting for the atmosphere and variety. <strong>Tip from
+                locals:</strong> eat at the stalls towards the back for better prices.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Kuromon+Market+Osaka" target="_blank"
+                rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Hozenji Yokocho Restaurants</div>
+            <div class="resto-name-jp">法善寺横丁 — Atmospheric stone alley</div>
+            <div class="resto-meta">
+              <span class="resto-type">Various Kappo</span>
+              <span class="resto-area">📍 Namba</span>
+              <span class="resto-budget">¥2,000–5,000</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-google"><span class="score">4.4</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> This narrow stone-paved alley feels like stepping back in time.
+              Dozens of intimate restaurants line the path. The moss-covered Mizukake Fudo statue is a beloved photo
+              spot. Reviewers consistently praise the romantic atmosphere. Tabelog-awarded restaurants here include
+              Meijiken (Western-style curry) and various kappo bars.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Hozenji+Yokocho+Namba+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- CAFES & SWEETS -->
+      <div class="tab-content" id="tab-cafes">
+        <div class="resto-grid">
+
+          <div class="resto-card">
+            <div class="resto-name">% Arabica</div>
+            <div class="resto-name-jp">%アラビカ 心斎橋店</div>
+            <div class="resto-meta">
+              <span class="resto-type">Coffee</span>
+              <span class="resto-area">📍 Shinsaibashi</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.30</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.3</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Kyoto-born minimalist coffee brand with Instagram-worthy latte art.
+              Reviewers love the clean aesthetic and smooth lattes. Some Tabelog users feel it's more about branding
+              than coffee quality, but the Kyoto Spanish Latte is universally praised.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%25%E3%82%A2%E3%83%A9%E3%83%93%E3%82%AB+%E5%BF%83%E6%96%8E%E6%A9%8B"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Arabica+coffee+Shinsaibashi+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <span class="must-try">Top Pick</span>
+            <div class="resto-name">LiLo Coffee Roasters</div>
+            <div class="resto-name-jp">リロコーヒーロースターズ</div>
+            <div class="resto-meta">
+              <span class="resto-type">Specialty Coffee</span>
+              <span class="resto-area">📍 Shinsaibashi</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.48</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.5</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Osaka's best specialty coffee by review consensus. Tiny shop with
+              exceptional single-origin pour-overs. The owner roasts beans in-house. Both Tabelog and Google reviewers
+              rave about the quality and the owner's passion. Often compared favorably to top Tokyo shops. A hidden gem.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog" href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=LiLo+Coffee+Roasters"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/LiLo+Coffee+Roasters+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <span class="must-try">Limited!</span>
+            <div class="resto-name">Gram Cafe & Pancakes</div>
+            <div class="resto-name-jp">グラムカフェ</div>
+            <div class="resto-meta">
+              <span class="resto-type">Pancakes</span>
+              <span class="resto-area">📍 Namba</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.44</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.2</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> The Premium Pancakes are served only 3 times daily (11:00, 15:00,
+              18:00) — limited 20 per session and they're heavenly! Tall, wobbly soufflé pancakes that jiggle. Reviewers
+              say "worth the queue." Regular menu pancakes are also good but the premium ones are the reason to come.
+            </div>
+            <div class="resto-tip">💡 Line up 30 min before serving time. Sessions: 11:00, 15:00, 18:00 (only 20 orders
+              each!)</div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%E3%82%B0%E3%83%A9%E3%83%A0+%E3%81%AA%E3%82%93%E3%81%B0"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Gram+Cafe+Pancakes+Namba+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Tsujiri (辻利)</div>
+            <div class="resto-name-jp">辻利 心斎橋店</div>
+            <div class="resto-meta">
+              <span class="resto-type">Matcha</span>
+              <span class="resto-area">📍 Shinsaibashi</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.40</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.2</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Historic Uji matcha brand (since 1860) serving rich matcha parfaits,
+              soft serve, and floats. Reviewers praise the deep, authentic matcha flavor. The parfait layers are
+              beautifully presented. Popular with locals and tourists alike. Not over-sweetened — lets the matcha shine.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%E8%BE%BB%E5%88%A9+%E5%BF%83%E6%96%8E%E6%A9%8B"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Tsujiri+Shinsaibashi+Osaka+matcha"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Pablo</div>
+            <div class="resto-name-jp">パブロ 心斎橋店</div>
+            <div class="resto-meta">
+              <span class="resto-type">Cheese Tart</span>
+              <span class="resto-area">📍 Shinsaibashi</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.38</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.1</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Famous for cheese tarts baked to your preference: "rare" (molten
+              center), "medium", or "well-done." Reviewers unanimously recommend "rare" — the gooey center is addictive.
+              Started in Osaka and now global. Mini tarts are great for snacking on the go.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%E3%83%91%E3%83%96%E3%83%AD+%E5%BF%83%E6%96%8E%E6%A9%8B"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Pablo+cheese+tart+Shinsaibashi+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Mamezo & Cafe</div>
+            <div class="resto-name-jp">まめぞうカフェ なんばパークス店</div>
+            <div class="resto-meta">
+              <span class="resto-type">Tofu Cafe</span>
+              <span class="resto-area">📍 Namba Parks</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.20</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.0</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> A unique tofu-focused cafe where soy and tofu appear in desserts —
+              the tofu parfait is surprisingly delicious. Great lunch sets too. Relaxing atmosphere inside Namba Parks.
+              Reviewers love the healthy-but-tasty concept. Good break spot after shopping.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%E3%81%BE%E3%82%81%E3%81%9E%E3%81%86+%E3%81%AA%E3%82%93%E3%81%B0%E3%83%91%E3%83%BC%E3%82%AF%E3%82%B9"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Mamezo+Cafe+Namba+Parks+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Takamura Coffee Roasters</div>
+            <div class="resto-name-jp">タカムラ コーヒーロースターズ</div>
+            <div class="resto-meta">
+              <span class="resto-type">Specialty Coffee</span>
+              <span class="resto-area">📍 Nishi-ku</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.52</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.4</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Originally a wine shop, now one of Osaka's top specialty coffee
+              spots. Tabelog reviewers highlight the curated bean selection and beautiful space. Google reviewers love
+              the tasting flights. Worth the detour if you're a serious coffee enthusiast. Also sells wine and craft
+              beer.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/osaka/rstLst/?vs=1&sk=%E3%82%BF%E3%82%AB%E3%83%A0%E3%83%A9+%E3%82%B3%E3%83%BC%E3%83%92%E3%83%BC"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Takamura+Coffee+Roasters+Osaka"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- KYOTO -->
+      <div class="tab-content" id="tab-kyoto">
+        <div class="resto-grid">
+
+          <div class="resto-card">
+            <span class="must-try">Must Try</span>
+            <div class="resto-name">Gion Tsujiri (辻利)</div>
+            <div class="resto-name-jp">辻利兵衛本店 祇園本店 — Est. 1860</div>
+            <div class="resto-meta">
+              <span class="resto-type">Matcha</span>
+              <span class="resto-area">📍 Gion</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.52</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.3</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> The Gion flagship is the original store and the matcha parfait here
+              is legendary. Layers of matcha jelly, ice cream, warabi mochi, and red bean. Tabelog reviewers say this is
+              "the definitive Kyoto matcha experience." Queue is usually 20-40 min but every review says it's worth it.
+            </div>
+            <div class="resto-tip">💡 The matcha parfait is the #1 order. Visit after Kiyomizu-dera since it's on the
+              way to Gion.</div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/kyoto/rstLst/?vs=1&sk=%E8%BE%BB%E5%88%A9+%E7%A5%87%E5%9C%92"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Tsujiri+Gion+Kyoto+matcha"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Nishiki Market Stalls</div>
+            <div class="resto-name-jp">錦市場 — "Kyoto's Kitchen"</div>
+            <div class="resto-meta">
+              <span class="resto-type">Street Food</span>
+              <span class="resto-area">📍 Nishiki</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-google"><span class="score">4.2</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> A 400m covered food market with 130+ stalls. Must-try: dashimaki
+              tamago (sweet omelette), tsukemono (pickles), fresh mochi, and matcha treats. Google reviewers note
+              eating-while-walking is now discouraged (buy and eat at vendors' counters). Go in the morning for a calmer
+              experience.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Nishiki+Market+Kyoto" target="_blank"
+                rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Ippudo Kyoto (一風堂)</div>
+            <div class="resto-name-jp">一風堂 — Hakata-style tonkotsu</div>
+            <div class="resto-meta">
+              <span class="resto-type">Ramen</span>
+              <span class="resto-area">📍 Various Kyoto</span>
+              <span class="resto-budget">¥900–1,200</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.47</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.2</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Japan's most famous ramen chain and reliably excellent. The Shiromaru
+              Classic (rich pork tonkotsu, thin noodles) is the go-to. Tabelog reviewers note it's a chain but maintain
+              high standards. Good fallback when you need a guaranteed great meal. Faster queues than local shops.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/kyoto/rstLst/?vs=1&sk=%E4%B8%80%E9%A2%A8%E5%A0%82+%E4%BA%AC%E9%83%BD"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Ippudo+Ramen+Kyoto" target="_blank"
+                rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Arashiyama Yoshimura</div>
+            <div class="resto-name-jp">嵐山よしむら</div>
+            <div class="resto-meta">
+              <span class="resto-type">Soba</span>
+              <span class="resto-area">📍 Arashiyama</span>
+              <span class="resto-budget">¥1,000–1,500</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.52</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.2</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Handmade soba with a stunning view of Togetsukyo Bridge and the Hozu
+              River. You can watch them cut soba noodles fresh. Tabelog reviewers love the "view + taste combo." Try the
+              tempura soba set. Peak lunch hour (12-13:00) can mean a 30-60 min wait.
+            </div>
+            <div class="resto-tip">💡 Request window seats for the Togetsukyo bridge view.</div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/kyoto/rstLst/?vs=1&sk=%E5%B5%90%E5%B1%B1%E3%82%88%E3%81%97%E3%82%80%E3%82%89"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Arashiyama+Yoshimura+soba+Kyoto"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <span class="must-try">Photo Spot</span>
+            <div class="resto-name">Starbucks Ninenzaka Yasaka</div>
+            <div class="resto-name-jp">スターバックス 京都二寧坂ヤサカ茶屋店</div>
+            <div class="resto-meta">
+              <span class="resto-type">Coffee</span>
+              <span class="resto-area">📍 Higashiyama</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-google"><span class="score">4.3</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> The world's most beautiful Starbucks — a 100-year-old traditional
+              machiya (wooden townhouse) converted into a Starbucks. Tatami seating upstairs! Google reviewers say it's
+              worth visiting just for the architecture, even if you don't drink coffee. Surprisingly not as crowded
+              inside as expected.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Starbucks+Ninenzaka+Kyoto"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- NARA -->
+      <div class="tab-content" id="tab-nara">
+        <div class="resto-grid">
+
+          <div class="resto-card">
+            <span class="must-try">Must See</span>
+            <div class="resto-name">Nakatanidou (中谷堂)</div>
+            <div class="resto-name-jp">中谷堂 — High-speed mochi pounding!</div>
+            <div class="resto-meta">
+              <span class="resto-type">Mochi</span>
+              <span class="resto-area">📍 Kintetsu Nara</span>
+              <span class="resto-budget">¥180–200</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.55</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.4</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Famous for the incredible speed-mochi-pounding performance — two
+              people hammer at blazing speed in perfect sync. It's a viral sensation and every reviewer says the show
+              alone is worth the visit. The yomogi (mugwort) mochi is soft with sweet red bean filling. Incredibly cheap
+              at ¥200. Tabelog's highest-rated mochi in all of Nara.
+            </div>
+            <div class="resto-tip">💡 Pounding performances happen several times a day (usually morning). Check when you
+              arrive.</div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/nara/rstLst/?vs=1&sk=%E4%B8%AD%E8%B0%B7%E5%A0%82" target="_blank"
+                rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Nakatanidou+mochi+Nara"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Kakinoha Sushi Tanaka</div>
+            <div class="resto-name-jp">柿の葉すし 田中</div>
+            <div class="resto-meta">
+              <span class="resto-type">Pressed Sushi</span>
+              <span class="resto-area">📍 Naramachi</span>
+              <span class="resto-budget">¥800–1,500</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.42</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.2</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Nara's signature dish — sushi wrapped in persimmon leaves (kakinoha),
+              which gives a subtle fragrance. The mackerel and salmon varieties are most popular. Tabelog reviewers
+              appreciate it as authentic Nara heritage food. Light, well-seasoned, and portable — perfect for a park
+              picnic. A unique food experience you won't find elsewhere.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/nara/rstLst/?vs=1&sk=%E6%9F%BF%E3%81%AE%E8%91%89%E3%81%99%E3%81%97+%E7%94%B0%E4%B8%AD"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Kakinoha+sushi+Tanaka+Nara"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Maguro Koya</div>
+            <div class="resto-name-jp">まぐろ小屋</div>
+            <div class="resto-meta">
+              <span class="resto-type">Tuna Bowls</span>
+              <span class="resto-area">📍 Kintetsu Nara</span>
+              <span class="resto-budget">¥1,000–1,800</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.41</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.3</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Surprisingly excellent bluefin tuna bowls in landlocked Nara!
+              Generous portions of fresh maguro at very fair prices. Google reviewers rave about the value — quality
+              comparable to seaside port towns. The donburi sets come with miso soup and sides. Popular with locals for
+              lunch.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/nara/rstLst/?vs=1&sk=%E3%81%BE%E3%81%90%E3%82%8D%E5%B0%8F%E5%B1%8B+%E5%A5%88%E8%89%AF"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Maguro+Koya+tuna+Nara"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- UJI -->
+      <div class="tab-content" id="tab-uji">
+        <div class="resto-grid">
+
+          <div class="resto-card">
+            <span class="must-try">Must Try</span>
+            <div class="resto-name">Nakamura Tokichi Honten (中村藤吉本店)</div>
+            <div class="resto-name-jp">中村藤吉本店 — Est. 1854</div>
+            <div class="resto-meta">
+              <span class="resto-type">Matcha</span>
+              <span class="resto-area">📍 Uji Omotesando</span>
+              <span class="resto-budget">¥1,000–1,800</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.64</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.3</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> The single best matcha experience in Japan by review consensus. A
+              170-year-old tea house with a stunning garden setting. The matcha parfait and matcha jelly are legendary —
+              Tabelog's highest-rated matcha spot in Uji. Reviewers universally describe it as "life-changing matcha."
+              The Nama Cha Jelly (fresh tea jelly) is the signature order. Expect 30-60 min queue.
+            </div>
+            <div class="resto-tip">💡 Get there by 10:00 for shorter waits. The Nama Cha Jelly + Matcha Parfait set is
+              unbeatable.</div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/kyoto/rstLst/?vs=1&sk=%E4%B8%AD%E6%9D%91%E8%97%A4%E5%90%89%E6%9C%AC%E5%BA%97+%E5%AE%87%E6%B2%BB"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Nakamura+Tokichi+Honten+Uji"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <span class="must-try">Historic</span>
+            <div class="resto-name">Tsuen Tea (通圓)</div>
+            <div class="resto-name-jp">通圓 — Est. 1160 (oldest teahouse!)</div>
+            <div class="resto-meta">
+              <span class="resto-type">Tea / Soba</span>
+              <span class="resto-area">📍 Uji Bridge</span>
+              <span class="resto-budget">¥800–1,500</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.37</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.2</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Possibly the oldest continuously-operating teahouse in the world —
+              since 1160! That's over 860 years. Matcha soba and matcha sweets are the draws. Tabelog reviewers note the
+              historic atmosphere is irreplaceable, sitting right by Uji Bridge. The tea ceremony experience (if
+              available) is highly recommended. Not the fanciest matcha, but the history is unmatched.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/kyoto/rstLst/?vs=1&sk=%E9%80%9A%E5%9C%93+%E5%AE%87%E6%B2%BB"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Tsuen+tea+Uji+Kyoto" target="_blank"
+                rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Itohkyuemon (伊藤久右衛門)</div>
+            <div class="resto-name-jp">伊藤久右衛門 宇治本店</div>
+            <div class="resto-meta">
+              <span class="resto-type">Matcha</span>
+              <span class="resto-area">📍 Uji</span>
+              <span class="resto-budget">¥800–1,500</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.43</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.2</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Another beloved Uji matcha institution. Famous for the matcha
+              tiramisu and matcha soba set. Reviewers say it's slightly less crowded than Nakamura Tokichi, making it a
+              great alternative. The gift shop is excellent for omiyage (souvenir matcha sweets). Tabelog reviewers
+              praise the matcha soba + parfait combo.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/kyoto/rstLst/?vs=1&sk=%E4%BC%8A%E8%97%A4%E4%B9%85%E5%8F%B3%E8%A1%9B%E9%96%80+%E5%AE%87%E6%B2%BB"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Itohkyuemon+Uji+matcha"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- KOBE -->
+      <div class="tab-content" id="tab-kobe">
+        <div class="resto-grid">
+
+          <div class="resto-card">
+            <span class="must-try">Top Pick</span>
+            <div class="resto-name">Mouriya (モーリヤ)</div>
+            <div class="resto-name-jp">モーリヤ 本店 — Est. 1885</div>
+            <div class="resto-meta">
+              <span class="resto-type">Kobe Beef Steak</span>
+              <span class="resto-area">📍 Sannomiya</span>
+              <span class="resto-budget">¥5,000–15,000</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.67</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.4</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> One of the highest-rated Kobe beef restaurants on Tabelog — and for
+              good reason. Over 135 years old. The A5 Kobe beef teppanyaki is cooked right in front of you.
+              <strong>Lunch sets (from ~¥5,000) are legendary value</strong> — same quality A5 beef as dinner at half
+              the price. Reviewers call it "the definitive Kobe beef experience." Professional, English-friendly
+              service.
+            </div>
+            <div class="resto-tip">💡 BOOK LUNCH IN ADVANCE — very popular. Lunch sets are best value (¥5,000-8,000 vs
+              ¥15,000+ dinner).</div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/hyogo/rstLst/?vs=1&sk=%E3%83%A2%E3%83%BC%E3%83%AA%E3%83%A4+%E7%A5%9E%E6%88%B8"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Mouriya+Kobe+beef+steak+Sannomiya"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Steak Aoyama</div>
+            <div class="resto-name-jp">ステーキ青山</div>
+            <div class="resto-meta">
+              <span class="resto-type">Kobe Beef Steak</span>
+              <span class="resto-area">📍 Kitano</span>
+              <span class="resto-budget">¥4,000–12,000</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.55</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.3</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> A more intimate alternative to Mouriya, located in the Kitano area
+              near the Ijinkan houses. Iron-plate style cooking. Tabelog reviewers praise the quality-to-price ratio —
+              slightly cheaper than Mouriya but comparable quality. Google reviewers highlight the chef's skill and warm
+              atmosphere. Great option if Mouriya is fully booked.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/hyogo/rstLst/?vs=1&sk=%E3%82%B9%E3%83%86%E3%83%BC%E3%82%AD%E9%9D%92%E5%B1%B1+%E7%A5%9E%E6%88%B8"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Steak+Aoyama+Kobe+Kitano"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <span class="must-try">Must Try</span>
+            <div class="resto-name">Roshoki (老祥記)</div>
+            <div class="resto-name-jp">老祥記 — Est. 1915</div>
+            <div class="resto-meta">
+              <span class="resto-type">Nikuman Buns</span>
+              <span class="resto-area">📍 Nankinmachi</span>
+              <span class="resto-budget">¥300–600</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.55</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.1</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> The most famous nikuman (pork buns) in all of Kobe — over 100 years
+              old. Tiny, juicy pork-filled buns steamed fresh and sold 3 at a time. There's ALWAYS a queue but it moves
+              fast. Tabelog reviewers call them "the best buta-man in Japan." Incredibly cheap at ~¥100 per bun. A
+              Chinatown institution — you cannot skip this.
+            </div>
+            <div class="resto-tip">💡 Buy 6 — you'll wish you'd gotten more. Queue moves fast (10-15 min usually).</div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/hyogo/rstLst/?vs=1&sk=%E8%80%81%E7%A5%A5%E8%A8%98+%E7%A5%9E%E6%88%B8"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Roshoki+nikuman+Nankinmachi+Kobe"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+          <div class="resto-card">
+            <div class="resto-name">Kobe Plaisir</div>
+            <div class="resto-name-jp">神戸プレジール — JA Official Restaurant</div>
+            <div class="resto-meta">
+              <span class="resto-type">Kobe Beef Steak</span>
+              <span class="resto-area">📍 Sannomiya</span>
+              <span class="resto-budget">¥5,000–12,000</span>
+            </div>
+            <div class="resto-ratings">
+              <span class="rating-badge rating-tabelog"><span class="score">3.52</span><span
+                  class="label">Tabelog</span></span>
+              <span class="rating-badge rating-google"><span class="score">4.3</span><span
+                  class="label">Google</span></span>
+            </div>
+            <div class="resto-review">
+              <strong>What reviewers say:</strong> Run by JA (Japan Agricultural Cooperative) — meaning guaranteed
+              authentic Kobe beef with full traceability. Every steak comes with a certificate showing which cow it came
+              from. Tabelog reviewers say it's technically "the most official" Kobe beef you can get. Google reviewers
+              love the modern interior and English service. Good lunch sets.
+            </div>
+            <div class="resto-links">
+              <a class="resto-link tabelog"
+                href="https://tabelog.com/en/hyogo/rstLst/?vs=1&sk=%E7%A5%9E%E6%88%B8%E3%83%97%E3%83%AC%E3%82%B8%E3%83%BC%E3%83%AB"
+                target="_blank" rel="noopener">📖 Tabelog</a>
+              <a class="resto-link gmaps" href="https://www.google.com/maps/search/Kobe+Plaisir+steak+Sannomiya"
+                target="_blank" rel="noopener">📍 Google Maps</a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- SHOPPING -->
+    <section class="section" id="shopping">
+      <h2 class="section-title"><span class="icon">🛍️</span> Shopping Guide</h2>
+
+      <table class="data-table">
+        <caption>Namba / Shinsaibashi Shopping</caption>
+        <thead>
+          <tr>
+            <th>Place</th>
+            <th>What to Find</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Shinsaibashi-suji</strong></td>
+            <td>600m covered arcade — fashion, cosmetics, souvenirs</td>
+          </tr>
+          <tr>
+            <td><strong>Don Quijote (Dotonbori)</strong></td>
+            <td>Everything — snacks, cosmetics, electronics, tax-free</td>
+          </tr>
+          <tr>
+            <td><strong>Daimaru Shinsaibashi</strong></td>
+            <td>Department store — fashion, depachika food basement</td>
+          </tr>
+          <tr>
+            <td><strong>Takashimaya Namba</strong></td>
+            <td>Department store — luxury brands, food hall</td>
+          </tr>
+          <tr>
+            <td><strong>Namba Parks</strong></td>
+            <td>Open-air mall with rooftop garden</td>
+          </tr>
+          <tr>
+            <td><strong>Edion Namba</strong></td>
+            <td>Electronics — cameras, gadgets, tax-free</td>
+          </tr>
+          <tr>
+            <td><strong>Amerikamura</strong></td>
+            <td>Streetwear, vintage, vinyl records, secondhand</td>
+          </tr>
+          <tr>
+            <td><strong>Den Den Town (Nipponbashi)</strong></td>
+            <td>Anime, manga, figures, retro games, electronics</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <table class="data-table">
+        <caption>🎁 Souvenir Ideas</caption>
+        <thead>
+          <tr>
+            <th>Item</th>
+            <th>Where to Buy</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Kit Kat Japan exclusives</td>
+            <td>Don Quijote, airports, convenience stores</td>
+          </tr>
+          <tr>
+            <td>Matcha snacks & tea</td>
+            <td>Tsujiri, Uji shops, Nishiki Market</td>
+          </tr>
+          <tr>
+            <td>Osaka Takoyaki snacks</td>
+            <td>Souvenir shops, station kiosks</td>
+          </tr>
+          <tr>
+            <td>Japanese cosmetics</td>
+            <td>Don Quijote, Matsumoto Kiyoshi, Daikoku</td>
+          </tr>
+          <tr>
+            <td>Tenugui cotton towels</td>
+            <td>Naramachi shops, souvenir stores</td>
+          </tr>
+          <tr>
+            <td>Chopsticks & ceramics</td>
+            <td>Nishiki Market, Naramachi, Kiyomizu area</td>
+          </tr>
+          <tr>
+            <td>Rikuro Ojisan cheesecake</td>
+            <td>Namba station branch (same-day)</td>
+          </tr>
+          <tr>
+            <td>Japanese whisky</td>
+            <td>Don Quijote, airport duty-free</td>
+          </tr>
+          <tr>
+            <td>Loose leaf tea</td>
+            <td>Ippodo (Kyoto), Tsuen (Uji)</td>
+          </tr>
+          <tr>
+            <td>Starbucks Japan mugs</td>
+            <td>Any Starbucks Japan</td>
+          </tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- CHECKLIST -->
+    <section class="section" id="checklist">
+      <h2 class="section-title"><span class="icon">✅</span> Pre-Trip Checklist</h2>
+      <div style="background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px">
+        <ul class="checklist">
+          <li><input type="checkbox" id="c1"><label for="c1">Book USJ tickets + Express Pass in advance (sells
+              out!)</label></li>
+          <li><input type="checkbox" id="c2"><label for="c2">Reserve Kobe Beef restaurant (Mouriya lunch is best
+              value)</label></li>
+          <li><input type="checkbox" id="c3"><label for="c3">Get ICOCA card at KIX on arrival</label></li>
+          <li><input type="checkbox" id="c4"><label for="c4">Download: Google Maps (offline), USJ app, Google Translate
+              (offline Japanese)</label></li>
+          <li><input type="checkbox" id="c5"><label for="c5">Bring: Portable battery, comfortable walking shoes, light
+              rain jacket</label></li>
+          <li><input type="checkbox" id="c6"><label for="c6">Cash: Withdraw yen at 7-Eleven ATM or KIX (Japan is
+              cash-heavy)</label></li>
+          <li><input type="checkbox" id="c7"><label for="c7">Tax-free shopping: Bring passport (¥5,000+ purchases at
+              most stores)</label></li>
+          <li><input type="checkbox" id="c8"><label for="c8">Book pocket WiFi or buy SIM card for arrival at KIX</label>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BUDGET -->
+    <section class="section" id="budget">
+      <h2 class="section-title"><span class="icon">💰</span> Estimated Daily Budget</h2>
+      <div class="budget-grid">
+        <div class="budget-item">
+          <div class="amount">¥1,500–2,500</div>
+          <div class="label">🚃 Transport / day</div>
+        </div>
+        <div class="budget-item">
+          <div class="amount">¥3,000–5,000</div>
+          <div class="label">🍜 Food / day</div>
+        </div>
+        <div class="budget-item">
+          <div class="amount">¥1,000–2,000</div>
+          <div class="label">🎟️ Attractions / day</div>
+        </div>
+        <div class="budget-item">
+          <div class="amount">¥15,000–20,000</div>
+          <div class="label">🎢 USJ (one-time)</div>
+        </div>
+        <div class="budget-item" style="border-color:var(--accent)">
+          <div class="amount">¥5,500–9,500</div>
+          <div class="label">📊 Daily Total (excl. USJ)</div>
+        </div>
+        <div class="budget-item">
+          <div class="amount">~฿0.25 / ¥1</div>
+          <div class="label">💱 Approx Exchange Rate</div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    🌸 Japan Trip April 2026 — Have an amazing time! 🌸
+  </footer>
+
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script>
+    // ========== MAP DATA ==========
+    const COLORS = {
+      hotel: '#e74c3c',
+      temple: '#3498db',
+      food: '#2ecc71',
+      attraction: '#9b59b6',
+      shopping: '#f39c12',
+      transport: '#1abc9c'
+    };
+
+    function icon(color, size = 10) {
+      return L.divIcon({
+        className: '',
+        html: `<div style="width:${size}px;height:${size}px;background:${color};border:2px solid white;border-radius:50%;box-shadow:0 1px 4px rgba(0,0,0,0.3)"></div>`,
+        iconSize: [size, size],
+        iconAnchor: [size / 2, size / 2]
+      });
+    }
+
+    function bigIcon(color) { return icon(color, 16); }
+
+    // All Points of Interest
+    const POI = {
+      // Hotel
+      hotel: { lat: 34.6600, lng: 135.5058, name: 'Far East Village Hotel Osaka', cat: 'hotel' },
+      // Osaka
+      dotonbori: { lat: 34.6687, lng: 135.5012, name: 'Dotonbori', cat: 'attraction' },
+      shinsekai: { lat: 34.6523, lng: 135.5063, name: 'Shinsekai / Tsutenkaku', cat: 'attraction' },
+      osakaCastle: { lat: 34.6873, lng: 135.5262, name: 'Osaka Castle', cat: 'attraction' },
+      kuromon: { lat: 34.6625, lng: 135.5085, name: 'Kuromon Market', cat: 'food' },
+      nambaParks: { lat: 34.6595, lng: 135.5016, name: 'Namba Parks', cat: 'shopping' },
+      shinsaibashi: { lat: 34.6740, lng: 135.5013, name: 'Shinsaibashi-suji', cat: 'shopping' },
+      amerikamura: { lat: 34.6729, lng: 135.4975, name: 'Amerikamura', cat: 'shopping' },
+      denDen: { lat: 34.6578, lng: 135.5056, name: 'Den Den Town', cat: 'shopping' },
+      donki: { lat: 34.6685, lng: 135.5025, name: 'Don Quijote', cat: 'shopping' },
+      hozenji: { lat: 34.6681, lng: 135.5040, name: 'Hozenji Yokocho', cat: 'attraction' },
+      // USJ
+      usj: { lat: 34.6654, lng: 135.4323, name: 'Universal Studios Japan', cat: 'attraction' },
+      // Nara
+      todaiji: { lat: 34.6890, lng: 135.8398, name: 'Todai-ji Temple', cat: 'temple' },
+      kasuga: { lat: 34.6812, lng: 135.8499, name: 'Kasuga Taisha', cat: 'temple' },
+      naraPark: { lat: 34.6851, lng: 135.8430, name: 'Nara Park (Deer)', cat: 'attraction' },
+      kofukuji: { lat: 34.6831, lng: 135.8329, name: 'Kofuku-ji Temple', cat: 'temple' },
+      naramachi: { lat: 34.6774, lng: 135.8326, name: 'Naramachi', cat: 'shopping' },
+      nakatanidou: { lat: 34.6838, lng: 135.8299, name: 'Nakatanidou Mochi', cat: 'food' },
+      // Kyoto
+      fushimiInari: { lat: 34.9671, lng: 135.7727, name: 'Fushimi Inari Taisha', cat: 'temple' },
+      kiyomizu: { lat: 34.9949, lng: 135.7850, name: 'Kiyomizu-dera', cat: 'temple' },
+      kinkakuji: { lat: 35.0394, lng: 135.7292, name: 'Kinkaku-ji (Golden Pavilion)', cat: 'temple' },
+      arashiyama: { lat: 35.0095, lng: 135.6720, name: 'Arashiyama Bamboo Grove', cat: 'attraction' },
+      gion: { lat: 35.0037, lng: 135.7757, name: 'Gion District', cat: 'attraction' },
+      nishiki: { lat: 35.0050, lng: 135.7649, name: 'Nishiki Market', cat: 'food' },
+      ninenzaka: { lat: 34.9981, lng: 135.7806, name: 'Ninenzaka & Sannenzaka', cat: 'attraction' },
+      // Uji
+      byodoin: { lat: 34.8893, lng: 135.8076, name: 'Byodo-in Temple', cat: 'temple' },
+      ujigami: { lat: 34.8916, lng: 135.8110, name: 'Uji-gami Shrine', cat: 'temple' },
+      nakamuraTokichi: { lat: 34.8900, lng: 135.8028, name: 'Nakamura Tokichi', cat: 'food' },
+      // Kobe
+      kitano: { lat: 34.7022, lng: 135.1880, name: 'Kitano Ijinkan', cat: 'attraction' },
+      nunobiki: { lat: 34.7046, lng: 135.1928, name: 'Nunobiki Herb Garden', cat: 'attraction' },
+      mouriya: { lat: 34.6930, lng: 135.1910, name: 'Mouriya (Kobe Beef)', cat: 'food' },
+      nankinmachi: { lat: 34.6883, lng: 135.1854, name: 'Nankinmachi (Chinatown)', cat: 'food' },
+      meriken: { lat: 34.6842, lng: 135.1869, name: 'Meriken Park / BE KOBE', cat: 'attraction' },
+      harborland: { lat: 34.6823, lng: 135.1797, name: 'Kobe Harborland', cat: 'shopping' },
+      // Transport
+      kix: { lat: 34.4347, lng: 135.2440, name: 'KIX (Kansai Airport)', cat: 'transport' },
+      namba: { lat: 34.6655, lng: 135.5008, name: 'Namba Station', cat: 'transport' },
+      shinOsaka: { lat: 34.7336, lng: 135.5001, name: 'Shin-Osaka Station', cat: 'transport' },
+    };
+
+    // ========== MAIN MAP ==========
+    const mainMap = L.map('main-map').setView([34.75, 135.45], 9);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 18
+    }).addTo(mainMap);
+
+    Object.values(POI).forEach(p => {
+      L.marker([p.lat, p.lng], { icon: bigIcon(COLORS[p.cat] || '#999') })
+        .addTo(mainMap)
+        .bindPopup(`<strong>${p.name}</strong><br><em style="text-transform:capitalize">${p.cat}</em>`);
+    });
+
+    // Fit to main area (Osaka region)
+    mainMap.fitBounds([
+      [34.42, 135.15],
+      [35.05, 135.86]
+    ]);
+
+    // ========== DAY MAPS ==========
+    const dayMaps = {};
+
+    const dayPOIs = {
+      day1: ['kix', 'namba', 'hotel', 'dotonbori'],
+      day2: ['hotel', 'usj'],
+      day3: ['hotel', 'naraPark', 'todaiji', 'kasuga', 'kofukuji', 'naramachi', 'nakatanidou', 'shinsekai'],
+      day4: ['hotel', 'shinOsaka', 'fushimiInari', 'kiyomizu', 'ninenzaka', 'gion', 'kinkakuji', 'arashiyama', 'nishiki'],
+      day5: ['hotel', 'byodoin', 'ujigami', 'nakamuraTokichi', 'osakaCastle', 'kuromon', 'nambaParks'],
+      day6: ['hotel', 'kitano', 'nunobiki', 'mouriya', 'nankinmachi', 'meriken', 'harborland', 'amerikamura', 'shinsaibashi'],
+      day7: ['hotel', 'donki', 'denDen', 'hozenji', 'namba', 'kix']
+    };
+
+    function initDayMap(dayId, mapElId) {
+      const el = document.getElementById(mapElId);
+      if (!el || el._leaflet_id) return; // already initialized
+
+      const map = L.map(mapElId).setView([34.69, 135.50], 11);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; OSM',
+        maxZoom: 18
+      }).addTo(map);
+
+      const points = dayPOIs[dayId] || [];
+      const bounds = [];
+      points.forEach((key, i) => {
+        const p = POI[key];
+        if (!p) return;
+        const isFirst = i === 0 && dayId !== 'day1';
+        L.marker([p.lat, p.lng], { icon: icon(COLORS[p.cat] || '#999', isFirst ? 14 : 12) })
+          .addTo(map)
+          .bindPopup(`<strong>${i + 1}. ${p.name}</strong>`);
+        bounds.push([p.lat, p.lng]);
+      });
+
+      // Draw route line
+      if (bounds.length > 1) {
+        L.polyline(bounds, { color: '#e74c3c', weight: 2, opacity: 0.5, dashArray: '6,8' }).addTo(map);
+      }
+
+      if (bounds.length) map.fitBounds(bounds, { padding: [30, 30] });
+      dayMaps[dayId] = map;
+    }
+
+    // ========== DAY CARD TOGGLE ==========
+    function toggleDay(header) {
+      const card = header.closest('.day-card');
+      const wasOpen = card.classList.contains('open');
+      card.classList.toggle('open');
+
+      if (!wasOpen) {
+        const day = card.dataset.day;
+        const mapId = 'map-day' + day;
+        setTimeout(() => {
+          initDayMap('day' + day, mapId);
+          if (dayMaps['day' + day]) dayMaps['day' + day].invalidateSize();
+        }, 100);
+      }
+    }
+
+    // ========== TABS ==========
+    function switchTab(e, tabId) {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+      e.target.classList.add('active');
+      document.getElementById(tabId).classList.add('active');
+    }
+
+    // ========== NAV ACTIVE HIGHLIGHT ==========
+    const sections = document.querySelectorAll('.section[id]');
+    const navLinks = document.querySelectorAll('.nav a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(s => {
+        if (window.scrollY >= s.offsetTop - 120) current = s.id;
+      });
+      navLinks.forEach(a => {
+        a.classList.remove('active');
+        if (a.getAttribute('href') === '#' + current) a.classList.add('active');
+      });
+    });
+
+    // ========== CHECKLIST PERSISTENCE ==========
+    document.querySelectorAll('.checklist input').forEach(cb => {
+      const saved = localStorage.getItem('japan-trip-' + cb.id);
+      if (saved === 'true') cb.checked = true;
+      cb.addEventListener('change', () => {
+        localStorage.setItem('japan-trip-' + cb.id, cb.checked);
+      });
+    });
+
+    // Init day 1 map (open by default)
+    setTimeout(() => initDayMap('day1', 'map-day1'), 200);
+  </script>
+
+</body>
+
+</html>
