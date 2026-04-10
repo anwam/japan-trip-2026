@@ -404,6 +404,98 @@
       display: block;
     }
 
+    /* Souvenir Categories */
+    .souv-category {
+      margin-bottom: 28px;
+    }
+
+    .souv-category-title {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 12px;
+      padding-bottom: 6px;
+      border-bottom: 2px solid var(--accent);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .souv-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 14px;
+    }
+
+    .souv-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 14px 16px;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+
+    .souv-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    }
+
+    .souv-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      margin-bottom: 4px;
+    }
+
+    .souv-desc {
+      font-size: 0.82rem;
+      color: var(--muted);
+      line-height: 1.45;
+      margin-bottom: 6px;
+    }
+
+    .souv-where {
+      font-size: 0.78rem;
+      color: #6366f1;
+      font-weight: 600;
+    }
+
+    .souv-price {
+      font-size: 0.75rem;
+      color: #059669;
+      font-weight: 600;
+      margin-top: 2px;
+    }
+
+    .souv-tag {
+      display: inline-block;
+      font-size: 0.68rem;
+      padding: 2px 7px;
+      border-radius: 8px;
+      font-weight: 600;
+      margin-right: 4px;
+      margin-bottom: 4px;
+    }
+
+    .souv-tag.popular {
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    .souv-tag.limited {
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    .souv-tag.budget {
+      background: #d1fae5;
+      color: #065f46;
+    }
+
+    .souv-tag.luxury {
+      background: #ede9fe;
+      color: #5b21b6;
+    }
+
     /* Checklist */
     .checklist {
       list-style: none;
@@ -2194,57 +2286,325 @@
         </tbody>
       </table>
 
-      <table class="data-table">
-        <caption>🎁 Souvenir Ideas</caption>
-        <thead>
-          <tr>
-            <th>Item</th>
-            <th>Where to Buy</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>Kit Kat Japan exclusives</td>
-            <td>Don Quijote, airports, convenience stores</td>
-          </tr>
-          <tr>
-            <td>Matcha snacks & tea</td>
-            <td>Tsujiri, Uji shops, Nishiki Market</td>
-          </tr>
-          <tr>
-            <td>Osaka Takoyaki snacks</td>
-            <td>Souvenir shops, station kiosks</td>
-          </tr>
-          <tr>
-            <td>Japanese cosmetics</td>
-            <td>Don Quijote, Matsumoto Kiyoshi, Daikoku</td>
-          </tr>
-          <tr>
-            <td>Tenugui cotton towels</td>
-            <td>Naramachi shops, souvenir stores</td>
-          </tr>
-          <tr>
-            <td>Chopsticks & ceramics</td>
-            <td>Nishiki Market, Naramachi, Kiyomizu area</td>
-          </tr>
-          <tr>
-            <td>Rikuro Ojisan cheesecake</td>
-            <td>Namba station branch (same-day)</td>
-          </tr>
-          <tr>
-            <td>Japanese whisky</td>
-            <td>Don Quijote, airport duty-free</td>
-          </tr>
-          <tr>
-            <td>Loose leaf tea</td>
-            <td>Ippodo (Kyoto), Tsuen (Uji)</td>
-          </tr>
-          <tr>
-            <td>Starbucks Japan mugs</td>
-            <td>Any Starbucks Japan</td>
-          </tr>
-        </tbody>
-      </table>
+      <h3 style="margin-top:32px;font-size:1.3rem;text-align:center">🎁 Souvenir Guide by Category</h3>
+      <p style="color:var(--muted);font-size:0.82rem;text-align:center;margin-bottom:24px">Organized by type — buy
+        tax-free with passport at stores showing 🛃 signs (¥5,000+ purchase)</p>
+
+      <!-- SWEETS & SNACKS -->
+      <div class="souv-category">
+        <div class="souv-category-title">🍬 Sweets & Snacks</div>
+        <div class="souv-grid">
+          <div class="souv-card">
+            <div class="souv-name">Kit Kat Japan Exclusives</div>
+            <span class="souv-tag popular">Most Popular</span>
+            <div class="souv-desc">Region-limited flavors you can't get abroad: matcha, strawberry cheesecake, sake,
+              wasabi, Kobe pudding, roasted tea. The Tokyo Banana Kit Kat is a hit.</div>
+            <div class="souv-where">📍 Don Quijote, airports, konbini, KitKat Chocolatory</div>
+            <div class="souv-price">💰 ¥200–1,200 per box</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Rikuro Ojisan Cheesecake</div>
+            <span class="souv-tag popular">Osaka Icon</span>
+            <div class="souv-desc">Osaka's legendary jiggly cheesecake — wobbly, light, and only ¥965. Buy on your last
+              day; best eaten fresh. The queues are part of the experience!</div>
+            <div class="souv-where">📍 Namba station branch, Namba main shop</div>
+            <div class="souv-price">💰 ¥965 per cake</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Osaka Takoyaki Snacks</div>
+            <span class="souv-tag popular">Classic Omiyage</span>
+            <div class="souv-desc">Takoyaki-flavored senbei crackers, takoyaki-shaped cookies, and takoyaki-flavor
+              Pretz. Fun, affordable, and unmistakably Osaka.</div>
+            <div class="souv-where">📍 Station kiosks, souvenir floors at dept. stores</div>
+            <div class="souv-price">💰 ¥500–1,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Yatsuhashi (八ツ橋)</div>
+            <span class="souv-tag popular">Kyoto Classic</span>
+            <div class="souv-desc">Kyoto's #1 souvenir — soft cinnamon mochi triangles filled with red bean, matcha,
+              strawberry, or chocolate. "Nama" (raw) version is the tastiest. Shogoin brand is the most famous.</div>
+            <div class="souv-where">📍 Kyoto Station, Nishiki Market, Kiyomizu-dera shops</div>
+            <div class="souv-price">💰 ¥500–1,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Royce Chocolate</div>
+            <span class="souv-tag popular">Fan Favorite</span>
+            <div class="souv-desc">Hokkaido's famous Nama Chocolate — rich, ganache-like squares that melt on the
+              tongue. Matcha and original are top sellers. Keep refrigerated! Available in Kansai Airport.</div>
+            <div class="souv-where">📍 KIX Airport, dept. store food halls</div>
+            <div class="souv-price">💰 ¥800–1,500</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Tokyo Banana (東京ばな奈)</div>
+            <div class="souv-desc">Japan's most gifted omiyage — banana-cream-filled sponge cakes. Limited seasonal
+              flavors at airports. Yes, it's "Tokyo" but sold everywhere in Kansai Airport too.</div>
+            <div class="souv-where">📍 KIX Airport departure gates</div>
+            <div class="souv-price">💰 ¥600–1,200</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Baton d'Or (バトンドール)</div>
+            <span class="souv-tag limited">Osaka Only</span>
+            <div class="souv-desc">Glico's premium Pocky — thicker, richer, and only sold in a few stores in Japan.
+              Butter, matcha, and strawberry flavors. Luxurious packaging makes it a perfect gift.</div>
+            <div class="souv-where">📍 Hankyu Umeda, Takashimaya Namba basement</div>
+            <div class="souv-price">💰 ¥500–1,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Kobe Pudding</div>
+            <span class="souv-tag limited">Kobe Only</span>
+            <div class="souv-desc">Custard pudding made with Rokko mountain milk. Creamy, smooth, and the jar is cute
+              enough to reuse. Tōraku brand is the original and best.</div>
+            <div class="souv-where">📍 Kobe Sannomiya station, Harborland shops</div>
+            <div class="souv-price">💰 ¥400–600 each</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- MATCHA & TEA -->
+      <div class="souv-category">
+        <div class="souv-category-title">🍵 Matcha & Tea</div>
+        <div class="souv-grid">
+          <div class="souv-card">
+            <div class="souv-name">Uji Matcha Powder (Premium)</div>
+            <span class="souv-tag luxury">Premium Gift</span>
+            <div class="souv-desc">Ceremonial-grade matcha from Uji — the birthplace of Japanese green tea. Nakamura
+              Tokichi and Itohkyuemon brands are top-tier. Great for home tea ceremonies or baking.</div>
+            <div class="souv-where">📍 Nakamura Tokichi (Uji), Itohkyuemon (Uji)</div>
+            <div class="souv-price">💰 ¥1,000–3,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Matcha Sweets Assortment</div>
+            <span class="souv-tag popular">Safe Gift</span>
+            <div class="souv-desc">Matcha chocolates, matcha langues de chat, matcha KitKats, matcha cookies. Available
+              in beautifully packaged boxes. Tsujiri and Itohkyuemon make excellent gift boxes.</div>
+            <div class="souv-where">📍 Tsujiri shops, Uji souvenir stores, Nishiki Market</div>
+            <div class="souv-price">💰 ¥500–2,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Loose Leaf Tea</div>
+            <div class="souv-desc">High-quality sencha, hojicha (roasted), genmaicha (rice tea). Ippodo in Kyoto has
+              been selling tea since 1717. Tsuen Tea in Uji is the oldest teahouse in the world (est. 1160!).</div>
+            <div class="souv-where">📍 Ippodo (Kyoto), Tsuen Tea (Uji), Itohkyuemon</div>
+            <div class="souv-price">💰 ¥500–3,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Matcha Latte Sticks</div>
+            <span class="souv-tag budget">Budget</span>
+            <div class="souv-desc">Instant matcha latte powder sticks by Tsujiri or Itoen. Just add hot water. 10-20
+              sticks per box — super easy to carry and universally liked as a gift.</div>
+            <div class="souv-where">📍 Don Quijote, supermarkets, konbini</div>
+            <div class="souv-price">💰 ¥300–800</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BEAUTY & COSMETICS -->
+      <div class="souv-category">
+        <div class="souv-category-title">💄 Beauty & Cosmetics</div>
+        <div class="souv-grid">
+          <div class="souv-card">
+            <div class="souv-name">Shiseido / CANMAKE / Kate</div>
+            <span class="souv-tag popular">Best Sellers</span>
+            <div class="souv-desc">Japanese drugstore makeup is legendary. CANMAKE Cream Cheek blush, Heroine Make
+              mascara (waterproof king), Kate Lip Monster — all cult favorites globally.</div>
+            <div class="souv-where">📍 Matsumoto Kiyoshi, Don Quijote, Daikoku Drug</div>
+            <div class="souv-price">💰 ¥300–2,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">LuLuLun / Quality First Face Masks</div>
+            <span class="souv-tag popular">Fan Favorite</span>
+            <div class="souv-desc">Japanese sheet masks in bulk packs — moisturizing, affordable, and region-limited
+              editions (Kyoto matcha packs, Osaka sake packs!). Great for friends who love skincare.</div>
+            <div class="souv-where">📍 Don Quijote, Matsumoto Kiyoshi</div>
+            <div class="souv-price">💰 ¥300–1,500</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Bioré / Suncut Sunscreen</div>
+            <div class="souv-desc">Japanese sunscreens are coveted worldwide — lightweight, no white cast, high UV
+              protection. Bioré UV Aqua Rich and Skin Aqua Tone Up are the top picks.</div>
+            <div class="souv-where">📍 Any drugstore, konbini</div>
+            <div class="souv-price">💰 ¥500–1,200</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Yojiya (よーじや) Oil Blotting Paper</div>
+            <span class="souv-tag limited">Kyoto Exclusive</span>
+            <div class="souv-desc">The iconic geisha-face logo brand from Kyoto. Oil blotting papers, hand mirrors, and
+              skincare. Beautiful traditional packaging. A very "Kyoto" gift.</div>
+            <div class="souv-where">📍 Yojiya shops in Gion, Kiyomizu, Kyoto Station</div>
+            <div class="souv-price">💰 ¥300–2,000</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CRAFTS & TRADITIONAL -->
+      <div class="souv-category">
+        <div class="souv-category-title">🎎 Traditional Crafts & Goods</div>
+        <div class="souv-grid">
+          <div class="souv-card">
+            <div class="souv-name">Tenugui Cotton Towels</div>
+            <div class="souv-desc">Traditional thin cotton cloths with beautiful prints — use as towels, wrapping cloth,
+              wall art, or bandana. Light to carry and uniquely Japanese. Dozens of gorgeous patterns.</div>
+            <div class="souv-where">📍 Naramachi shops, Nishiki Market, Tokyu Hands</div>
+            <div class="souv-price">💰 ¥500–1,500</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Chopsticks & Chopstick Rests</div>
+            <span class="souv-tag popular">Great Gift</span>
+            <div class="souv-desc">Beautifully crafted lacquerware or wooden chopsticks, often sold in pairs for
+              couples. Ceramic chopstick rests shaped as animals, food, or seasonal motifs. Packaged in gift boxes.
+            </div>
+            <div class="souv-where">📍 Nishiki Market, Kiyomizu shops, Naramachi</div>
+            <div class="souv-price">💰 ¥500–3,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Kiyomizu-yaki Ceramics</div>
+            <span class="souv-tag luxury">Premium</span>
+            <div class="souv-desc">Hand-painted Kyoto pottery — tea cups, sake sets, small plates. The shops along
+              Kiyomizu-dera slope are full of them. Ranges from affordable to museum-quality pieces.</div>
+            <div class="souv-where">📍 Kiyomizu-zaka slope, Ninenzaka, Gion craft shops</div>
+            <div class="souv-price">💰 ¥800–10,000+</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Furoshiki Wrapping Cloth</div>
+            <div class="souv-desc">Traditional fabric squares for wrapping gifts, bottles, or bento. Reusable,
+              eco-friendly, and beautiful. Doubles as a scarf or bag. Many stunning patterns available.</div>
+            <div class="souv-where">📍 Tokyu Hands, dept. stores, Kyoto craft shops</div>
+            <div class="souv-price">💰 ¥500–3,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Nara Deer Goods</div>
+            <span class="souv-tag budget">Budget Cute</span>
+            <div class="souv-desc">Deer-themed everything: keychains, cookies, socks, pouches, magnets. Nara's deer are
+              the mascot and the souvenir shops are packed with adorable deer merch.</div>
+            <div class="souv-where">📍 Nara Park area shops, Kintetsu Nara station</div>
+            <div class="souv-price">💰 ¥200–1,500</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Omamori Charms</div>
+            <span class="souv-tag budget">Meaningful</span>
+            <div class="souv-desc">Protective amulets from temples/shrines — for health, love, study, travel, etc. Each
+              shrine has unique designs. NOT sold in shops; only at the shrines themselves. Meaningful souvenirs.</div>
+            <div class="souv-where">📍 Fushimi Inari, Kiyomizu-dera, Todai-ji, Kasuga Taisha</div>
+            <div class="souv-price">💰 ¥500–1,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Goshuin Stamp Book (御朱印帳)</div>
+            <div class="souv-desc">Collectible calligraphy stamps from each temple/shrine visited. Buy a blank
+              goshuin-cho (stamp book) at your first temple and collect stamps at each stop. A living travel diary.
+            </div>
+            <div class="souv-where">📍 Any major temple or shrine (¥300 per stamp)</div>
+            <div class="souv-price">💰 ¥1,500–2,500 for book + ¥300/stamp</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- DRINKS & ALCOHOL -->
+      <div class="souv-category">
+        <div class="souv-category-title">🥃 Drinks & Alcohol</div>
+        <div class="souv-grid">
+          <div class="souv-card">
+            <div class="souv-name">Japanese Whisky</div>
+            <span class="souv-tag luxury">Premium Gift</span>
+            <div class="souv-desc">Suntory Toki, Hibiki, Yamazaki, Nikka From The Barrel — globally acclaimed. Airport
+              duty-free often has exclusives. Don Quijote has surprising stock at good prices. Check airline liquid
+              limits!</div>
+            <div class="souv-where">📍 Don Quijote, KIX Airport duty-free</div>
+            <div class="souv-price">💰 ¥2,000–15,000+</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Sake (日本酒)</div>
+            <div class="souv-desc">Nada (Kobe) is Japan's top sake-producing region. Visit a brewery in Nada-Gogō
+              district or pick up Kobe-brewed sake in Sannomiya. Dassai and Kubota are premium crowd-pleasers.</div>
+            <div class="souv-where">📍 Nada breweries (Kobe), Don Quijote, dept. food halls</div>
+            <div class="souv-price">💰 ¥1,000–5,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Craft Beer</div>
+            <span class="souv-tag limited">Regional</span>
+            <div class="souv-desc">Minoh Beer (Osaka's pride — especially the W-IPA and Stout), Kyoto Brewing Co., Nara
+              Beer. Cans are easy to pack and taste like the trip.</div>
+            <div class="souv-where">📍 Craft beer shops, Takamura Coffee (also beer!), konbini</div>
+            <div class="souv-price">💰 ¥400–800 per can</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- STATIONERY & POP CULTURE -->
+      <div class="souv-category">
+        <div class="souv-category-title">✏️ Stationery & Pop Culture</div>
+        <div class="souv-grid">
+          <div class="souv-card">
+            <div class="souv-name">Starbucks Japan Collection</div>
+            <span class="souv-tag popular">Collector</span>
+            <div class="souv-desc">Japan-exclusive tumblers, mugs, and "You Are Here" city mugs (Osaka, Kyoto, Kobe
+              designs). Seasonal sakura editions in April! A beloved souvenir for Starbucks fans.</div>
+            <div class="souv-where">📍 Any Starbucks Japan (Ninenzaka Kyoto is the coolest)</div>
+            <div class="souv-price">💰 ¥1,500–4,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Japanese Stationery</div>
+            <span class="souv-tag popular">Must Buy</span>
+            <div class="souv-desc">Pilot, Pentel, Zebra, Uni — Japanese pens are the best in the world. Jetstream pens,
+              Kuru Toga mechanical pencils, Midori notebooks, washi tape sets, and erasable Frixion pens.</div>
+            <div class="souv-where">📍 Tokyu Hands, Loft, Don Quijote, konbini</div>
+            <div class="souv-price">💰 ¥100–2,000</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Anime & Manga Figures</div>
+            <div class="souv-desc">Exclusive figures, gashapon capsule toys, manga volumes, and anime merch. Den Den
+              Town (Osaka's Akihabara) has everything from vintage to newest releases.</div>
+            <div class="souv-where">📍 Den Den Town, Mandarake, Animate, Surugaya</div>
+            <div class="souv-price">💰 ¥200–20,000+</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Gashapon Capsule Toys</div>
+            <span class="souv-tag budget">Fun & Cheap</span>
+            <div class="souv-desc">Coin-operated capsule toy machines everywhere — miniature food, animals, anime
+              characters, bizarre humor items. Incredibly addictive. Kids and adults love them. Perfect small gifts.
+            </div>
+            <div class="souv-where">📍 Literally everywhere — stations, malls, arcades, Den Den Town</div>
+            <div class="souv-price">💰 ¥200–500 per capsule</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">USJ Exclusive Merchandise</div>
+            <span class="souv-tag limited">USJ Only</span>
+            <div class="souv-desc">Nintendo World power-up bands, Mario/Zelda plushies, Harry Potter wands & robes,
+              exclusive snack tins. Only available inside Universal Studios Japan.</div>
+            <div class="souv-where">📍 Universal Studios Japan shops</div>
+            <div class="souv-price">💰 ¥500–8,000+</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CLOTHING & FASHION -->
+      <div class="souv-category">
+        <div class="souv-category-title">👘 Clothing & Accessories</div>
+        <div class="souv-grid">
+          <div class="souv-card">
+            <div class="souv-name">Uniqlo Japan Exclusives</div>
+            <span class="souv-tag popular">Best Value</span>
+            <div class="souv-desc">Japan Uniqlo carries exclusive collaborations and items not sold overseas. UT graphic
+              tees (anime, artist collabs), AIRism innerwear, and HEATTECH are often cheaper here. Tax-free eligible.
+            </div>
+            <div class="souv-where">📍 Uniqlo Shinsaibashi (flagship), any branch</div>
+            <div class="souv-price">💰 ¥990–3,990</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Tabi Socks & Japanese Sandals</div>
+            <div class="souv-desc">Split-toe tabi socks in colorful modern designs — uniquely Japanese and fun to wear.
+              Wooden geta sandals too, though heavy. Socks are the lightest souvenir ever.</div>
+            <div class="souv-where">📍 SOU SOU (Kyoto), Tokyu Hands, temple shops</div>
+            <div class="souv-price">💰 ¥400–1,500</div>
+          </div>
+          <div class="souv-card">
+            <div class="souv-name">Secondhand Vintage Finds</div>
+            <div class="souv-desc">Amerikamura is Osaka's vintage heaven — Levi's, band tees, streetwear, Y2K fashion
+              all in great condition. 2nd Street and Ragtag are reliable chains for secondhand branded items.</div>
+            <div class="souv-where">📍 Amerikamura, 2nd Street, Ragtag</div>
+            <div class="souv-price">💰 ¥500–10,000</div>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- CHECKLIST -->
