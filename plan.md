@@ -3,7 +3,7 @@
 > **April 13–19, 2026 (7 Days / 6 Nights)**
 > **Flight:** DMK (Bangkok) → KIX (Kansai) | Depart 10:30 → Arrive 18:25
 > **Return:** KIX → DMK | Depart 19:55
-> **Hotel:** Far East Village Hotel Osaka (Nipponbashi/Namba area)
+> **Hotel:** Far East Village Hotel Osaka Honmachi (3-3-6 Kyutaromachi, Chuo Ward)
 
 ---
 
@@ -29,7 +29,7 @@
 | 10:30 | Depart DMK |
 | 18:25 | Arrive KIX — pick up ICOCA card, pocket WiFi/SIM |
 | 19:15 | Nankai Rapi:t to Namba |
-| 20:00 | Check in Far East Village Hotel Osaka |
+| 20:00 | Check in Far East Village Hotel Osaka Honmachi |
 | 20:30 | **Dotonbori Night Walk** — Glico sign, canal walk, street food |
 | 21:00 | Dinner at Dotonbori |
 
