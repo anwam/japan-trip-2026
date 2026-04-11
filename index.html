@@ -321,6 +321,63 @@
       margin-top: 12px;
     }
 
+    /* Transport */
+    .transport-box {
+      background: #f0fdfa;
+      border-left: 4px solid #14b8a6;
+      padding: 12px 16px;
+      border-radius: 0 8px 8px 0;
+      font-size: 0.88rem;
+      margin-top: 12px;
+    }
+
+    .transport-box .transport-title {
+      font-weight: 700;
+      color: #0f766e;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .transport-box ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .transport-box li {
+      padding: 4px 0;
+      border-bottom: 1px dashed #d1d5db;
+      display: flex;
+      align-items: baseline;
+      gap: 8px;
+    }
+
+    .transport-box li:last-child {
+      border-bottom: none;
+    }
+
+    .transport-box .route {
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .transport-box .detail {
+      color: var(--muted);
+      font-size: 0.82rem;
+    }
+
+    .transport-box .cost {
+      background: #ccfbf1;
+      color: #0f766e;
+      padding: 1px 8px;
+      border-radius: 10px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
     /* Restaurant & cafe tables */
     .data-table {
       width: 100%;
@@ -872,6 +929,19 @@
             <span class="tag see">📸 Glico Running Man</span>
             <span class="tag see">📸 Dotonbori Canal</span>
           </div>
+          <div class="transport-box">
+            <div class="transport-title">🚃 Transportation</div>
+            <ul>
+              <li><span class="route">KIX → Namba:</span> <span class="detail">Nankai Rapi:t Express ~38 min</span>
+                <span class="cost">¥1,450</span></li>
+              <li><span class="route">At KIX:</span> <span class="detail">Pick up ICOCA card at station — works on all
+                  trains, buses & konbini</span></li>
+              <li><span class="route">Namba → Hotel:</span> <span class="detail">Walk ~5 min from Nankai Namba
+                  Station</span></li>
+              <li><span class="route">Hotel → Dotonbori:</span> <span class="detail">Walk ~10 min north along the
+                  canal</span></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -926,6 +996,16 @@
             <span class="tag see">🎢 Hollywood Dream</span>
             <span class="tag eat">🍺 Butterbeer</span>
             <span class="tag eat">🍄 Mario Cafe</span>
+          </div>
+          <div class="transport-box">
+            <div class="transport-title">🚃 Transportation</div>
+            <ul>
+              <li><span class="route">Hotel → USJ:</span> <span class="detail">JR Namba → Universal City via JR Yumesaki
+                  Line ~25 min</span> <span class="cost">¥180</span></li>
+              <li><span class="route">USJ → Hotel:</span> <span class="detail">Same route back — JR Universal City → JR
+                  Namba</span> <span class="cost">¥180</span></li>
+              <li><span class="route">Pay with:</span> <span class="detail">Tap ICOCA card at station gates</span></li>
+            </ul>
           </div>
           <div class="tip-box">
             💡 <strong>Tips:</strong> Buy Express Pass in advance (sells out!). Download USJ app for wait times. Line up
@@ -1010,6 +1090,19 @@
             <span class="tag see">⛩️ Kasuga Taisha</span>
             <span class="tag see">🗼 Tsutenkaku Tower</span>
           </div>
+          <div class="transport-box">
+            <div class="transport-title">🚃 Transportation</div>
+            <ul>
+              <li><span class="route">Hotel → Nara:</span> <span class="detail">Kintetsu Namba → Kintetsu Nara (Rapid
+                  Express) ~35 min</span> <span class="cost">¥680</span></li>
+              <li><span class="route">Within Nara:</span> <span class="detail">All sights are walkable from Kintetsu
+                  Nara Station (~15–20 min to Todai-ji)</span></li>
+              <li><span class="route">Nara → Shinsekai:</span> <span class="detail">Kintetsu Nara → Namba, then Osaka
+                  Metro Midosuji Line to Dobutsuen-mae ~50 min total</span> <span class="cost">¥680 + ¥230</span></li>
+              <li><span class="route">Shinsekai → Hotel:</span> <span class="detail">Walk ~15 min or Metro Dobutsuen-mae
+                  → Namba 1 stop</span> <span class="cost">¥230</span></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -1085,6 +1178,24 @@
             <span class="tag eat">🍜 Ippudo Ramen</span>
             <span class="tag eat">🍵 Tsujiri Matcha</span>
             <span class="tag eat">🛒 Nishiki Market</span>
+          </div>
+          <div class="transport-box">
+            <div class="transport-title">🚃 Transportation</div>
+            <ul>
+              <li><span class="route">Hotel → Kyoto:</span> <span class="detail">JR Namba → Shin-Osaka, then Tokaido
+                  Shinkansen → Kyoto ~40 min total</span> <span class="cost">¥1,440 (non-reserved)</span></li>
+              <li><span class="route">Kyoto → Fushimi Inari:</span> <span class="detail">JR Nara Line from Kyoto Station
+                  → Inari Station ~5 min (2 stops)</span> <span class="cost">¥150</span></li>
+              <li><span class="route">Fushimi Inari → Kiyomizu-dera:</span> <span class="detail">Keihan Railway
+                  Fushimi-Inari → Kiyomizu-Gojō ~5 min, then walk 15 min uphill</span> <span class="cost">¥160</span>
+              </li>
+              <li><span class="route">Gion → Kinkaku-ji:</span> <span class="detail">Kyoto City Bus #12 or #205 ~40
+                  min</span> <span class="cost">¥230</span></li>
+              <li><span class="route">Kinkaku-ji → Arashiyama:</span> <span class="detail">Kyoto City Bus #11 ~30 min,
+                  or Randen tram from Kitano-Hakubaicho</span> <span class="cost">¥230</span></li>
+              <li><span class="route">Kyoto → Hotel:</span> <span class="detail">Shinkansen Kyoto → Shin-Osaka, then JR
+                  to Namba</span> <span class="cost">¥1,440</span></li>
+            </ul>
           </div>
         </div>
       </div>
@@ -1164,6 +1275,21 @@
             <span class="tag eat">🍵 Tsuen Tea</span>
             <span class="tag eat">🐟 Kuromon Market</span>
           </div>
+          <div class="transport-box">
+            <div class="transport-title">🚃 Transportation</div>
+            <ul>
+              <li><span class="route">Hotel → Uji:</span> <span class="detail">Keihan Line: Namba → Chushojima
+                  (transfer) → Uji ~50 min, or JR Namba → Uji ~45 min</span> <span class="cost">¥420–620</span></li>
+              <li><span class="route">Within Uji:</span> <span class="detail">Everything walkable — Byodo-in, Uji-gami
+                  Shrine, tea street all within 15 min</span></li>
+              <li><span class="route">Uji → Osaka Castle:</span> <span class="detail">JR Uji → JR Osaka (Morinomiya
+                  Stn), walk 15 min to castle ~55 min total</span> <span class="cost">¥590</span></li>
+              <li><span class="route">Osaka Castle → Kuromon:</span> <span class="detail">Osaka Metro: Tanimachi 4-chome
+                  → Nippombashi ~10 min</span> <span class="cost">¥230</span></li>
+              <li><span class="route">Kuromon → Hotel:</span> <span class="detail">Walk south ~10 min through
+                  Nipponbashi</span></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -1242,6 +1368,23 @@
             <span class="tag shop">🛍️ Amerikamura</span>
             <span class="tag shop">🛍️ Shinsaibashi</span>
           </div>
+          <div class="transport-box">
+            <div class="transport-title">🚃 Transportation</div>
+            <ul>
+              <li><span class="route">Hotel → Kobe:</span> <span class="detail">JR Namba → JR Sannomiya (via Osaka Stn)
+                  ~30 min, or Hanshin Namba Line direct ~40 min</span> <span class="cost">¥420</span></li>
+              <li><span class="route">Sannomiya → Kitano Ijinkan:</span> <span class="detail">Walk uphill ~15 min north,
+                  or Kobe City Loop Bus</span> <span class="cost">¥260 bus</span></li>
+              <li><span class="route">Kitano → Nunobiki Herb Garden:</span> <span class="detail">Walk east 10 min to
+                  Shin-Kobe Ropeway station</span> <span class="cost">¥1,800 ropeway round-trip</span></li>
+              <li><span class="route">Nankinmachi → Meriken Park:</span> <span class="detail">Walk south ~10 min to the
+                  waterfront</span></li>
+              <li><span class="route">Kobe → Hotel:</span> <span class="detail">JR Sannomiya → Osaka → Namba ~30
+                  min</span> <span class="cost">¥420</span></li>
+              <li><span class="route">Amerikamura / Shinsaibashi:</span> <span class="detail">Walk from Namba ~10 min
+                  north</span></li>
+            </ul>
+          </div>
         </div>
       </div>
 
@@ -1314,6 +1457,17 @@
             <span class="tag shop">🛍️ Daimaru</span>
             <span class="tag shop">🎮 Den Den Town</span>
             <span class="tag see">⛩️ Hozenji Yokocho</span>
+          </div>
+          <div class="transport-box">
+            <div class="transport-title">🚃 Transportation</div>
+            <ul>
+              <li><span class="route">All shopping:</span> <span class="detail">Namba / Shinsaibashi / Den Den Town are
+                  all walkable from hotel (5–15 min)</span></li>
+              <li><span class="route">Hotel → KIX:</span> <span class="detail">Nankai Rapi:t Express from Nankai Namba →
+                  KIX ~38 min — depart by 16:30 latest!</span> <span class="cost">¥1,450</span></li>
+              <li><span class="route">At KIX:</span> <span class="detail">Tax-free shopping at airport after check-in —
+                  arrive 2.5 hrs before 19:55 flight</span></li>
+            </ul>
           </div>
         </div>
       </div>
