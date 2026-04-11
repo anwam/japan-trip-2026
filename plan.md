@@ -9,14 +9,15 @@
 
 ## Transport Tips
 
-- **KIX → Namba:** Nankai Rapi:t Express (~38 min, ¥1,450) or Nankai Airport Express (~45 min, ¥930)
-- **Namba → KIX (return):** Same route, depart by ~17:00 latest for 19:55 flight
+- **KIX → Hotel:** Nankai Rapi:t to Namba (~38 min, ¥1,450), then **Osaka Metro Midosuji Line northbound 2 stops: Namba (M20) → Honmachi (M18)** (~4 min, ¥230)
+- **Hotel → Namba (southbound):** Midosuji south 2 stops Honmachi → Namba (~4 min, ¥230) — for USJ, Uji/Nara, and departure day
+- **Hotel → Shin-Osaka / Kyoto (northbound):** Midosuji **north** from Honmachi → Shin-Osaka (~5–6 stops, ~10 min) — no need to go to Namba first!
+- **Hotel → Kobe (northbound):** Midosuji north Honmachi → Umeda (~3 stops, ~6 min), walk to JR Osaka Station, JR Kobe Line → Sannomiya (~25 min)
+- **Hotel → KIX (return):** Midosuji south to Namba, then Nankai Rapi:t → KIX (~38 min, ¥1,450). Depart hotel by 15:00 on Day 7.
 - **IC Card:** Get an ICOCA card at KIX — works on all trains, buses, convenience stores
-- **Kyoto Shinkansen:** JR Shin-Osaka → Kyoto (Tokaido Shinkansen, ~15 min, ¥1,440 non-reserved)
-- **Nara:** Kintetsu Namba → Kintetsu Nara (~35 min, ¥680)
-- **Uji:** Keihan or JR from Osaka/Kyoto (~45–60 min)
-- **Kobe:** JR Osaka → Sannomiya (~20 min, ¥420)
-- **USJ:** JR Namba → Universal City via JR Yumesaki Line (~25 min)
+- **Nara:** Kintetsu Namba → Kintetsu Nara (~38 min, ¥680)
+- **Uji:** JR Namba → JR Uji (~45 min, ¥620)
+- **USJ:** JR Namba → Universal City via JR Yumesaki Line (~25 min, ¥180)
 
 ---
 
@@ -87,49 +88,48 @@
 
 ---
 
-### Day 4 — Thu, April 16 | Osaka Shopping Day 🛍️
+### Day 4 — Thu, April 16 | Osaka Shopping + Nara Half Day 🛍️🦌
 
 | Time | Activity |
 |------|----------|
 | 09:30 | **Shinsaibashi-suji** — 600m covered arcade, fashion & cosmetics |
 | 10:30 | **Daimaru Shinsaibashi** — basement food hall: Baton d'Or, matcha sweets, gift-box omiyage |
 | 11:30 | **Takashimaya Namba** — tax-free floor, Kit Kat Japan exclusives, luxury goods |
-| 12:30 | Lunch — **Gram Cafe** soufflé pancakes (queue 30 min before 11:00 or 15:00 session!) |
-| 13:30 | **Amerikamura** — vintage clothing, vinyl, streetwear, secondhand finds |
-| 15:00 | **Don Quijote (Dotonbori)** — cosmetics, Kit Kats, snacks, face masks, Japanese whisky |
-| 16:30 | **Den Den Town (Nipponbashi)** — capsule toys, anime figures, stationery, retro games |
-| 18:00 | **Kuromon Market** — fresh sashimi & tamagoyaki for evening snacking |
+| 12:15 | Quick lunch in Namba — keep it efficient before heading east |
+| 13:15 | Kintetsu Namba → **Kintetsu Nara** (~38 min) |
+| 14:00 | **Nara Park** — feed the deer 🦌 (best as a short, focused visit) |
+| 14:45 | **Todai-ji Temple** — Great Buddha Hall, world's largest wooden building |
+| 16:00 | **Nakatanidou** + Naramachi stroll — fresh mochi and old-town atmosphere |
+| 16:45 | **Optional:** **Kasuga Taisha** if energy is still good; otherwise keep the return easy |
+| 17:30 | Kintetsu Nara → Osaka Namba |
 | 19:00 | Dinner at **Hozenji Yokocho** — atmospheric stone alley, kappo restaurants |
 
-**Buy:** Kit Kat exclusives · Baton d'Or Pocky (Daimaru B1) · CANMAKE/Kate cosmetics · Japanese stationery (Jetstream pens, Kuru Toga) · LuLuLun face masks · Capsule toys · Anime figures
-**Tips:** Bring passport for tax-free (¥5,000+). Daimaru B1–B2 basement is the best food souvenir floor.
+**Buy:** Kit Kat exclusives · Baton d'Or Pocky (Daimaru B1) · CANMAKE/Kate cosmetics · Japanese stationery (Jetstream pens, Kuru Toga) · LuLuLun face masks
+**Eat:** Nakatanidou mochi · Hozenji Yokocho dinner
+**Tips:** Bring passport for tax-free (¥5,000+). This is the best place to compress Osaka shopping while still keeping Nara worthwhile as a half day.
 
 ---
 
-### Day 5 — Fri, April 17 | Uji + Nara 🍵🦌
+### Day 5 — Fri, April 17 | Uji Full Day 🍵
 
-> 💡 **Why this combo works:** Uji and Nara are both east of Osaka. Connect directly by JR (Uji → Kizu → Nara, ~50 min, ¥400) without backtracking. Start Uji early — Byodo-in opens at 08:30!
+> 💡 **Why this version works better:** Uji is slower, calmer, and much better for matcha shopping. If you plan to buy Chawan or tea ware, ending the day in Uji and going straight back to Osaka is safer than carrying ceramics through Nara deer areas.
 
 | Time | Activity |
 |------|----------|
 | 07:30 | Depart hotel — JR Namba → Uji (~45 min) |
 | 08:30 | **Byodo-in Temple** — the temple on the ¥10 coin! Phoenix Hall 🪙 |
 | 09:30 | Stroll **Uji River** + **Uji-gami Shrine** — oldest shrine building in Japan |
-| 10:00 | **Nakamura Tokichi** — matcha parfait & Nama Cha Jelly (arrive early to beat the queue!) |
-| 11:00 | **Uji Omotesando Street** — matcha tasting, pick up premium Uji tea as omiyage |
-| 12:00 | Lunch at **Tsuen Tea** (est. 1160!) — matcha soba set |
-| 13:00 | JR Uji → Kizu → JR Nara (~50 min) |
-| 14:00 | **Nara Park** — feed the deer 🦌 (shika senbei ¥200) |
-| 14:30 | **Todai-ji Temple** — Great Buddha Hall, world's largest wooden building |
-| 15:30 | **Kasuga Taisha** — 3,000 stone & bronze lanterns ⛩️ |
-| 16:30 | **Nakatanidou** — watch lightning-fast mochi pounding! (¥200 each) 🍡 |
-| 17:00 | Kintetsu Nara → Osaka Namba (~38 min) |
-| 18:00 | **Shinsekai district** — Tsutenkaku Tower, retro Osaka atmosphere |
-| 19:00 | Dinner — **Kushikatsu Daruma** (no double-dipping!) |
+| 10:15 | **Nakamura Tokichi** — matcha parfait & Nama Cha Jelly |
+| 11:30 | **Uji Omotesando Street** — matcha tasting, premium tea, and Chawan / tea ware browsing |
+| 12:30 | Lunch at **Tsuen Tea** (est. 1160!) — matcha soba set |
+| 14:00 | Free browsing time for tea shops, ceramics, and omiyage picking |
+| 15:30 | **Optional:** **Itohkyuemon** cafe stop or another round of dessert / tea shopping |
+| 16:30 | Final shopping pass — pack ceramics carefully before heading back |
+| 17:30 | JR Uji → Osaka |
+| 19:00 | Easy Osaka dinner near hotel or Honmachi / Shinsaibashi |
 
-**Eat (Uji):** Matcha parfait at Nakamura Tokichi · Matcha soba at Tsuen Tea (est. 1160!)
-**Eat (Nara):** Speed-pound mochi at Nakatanidou · Kakinoha Sushi at Tanaka
-**Eat (Osaka):** Kushikatsu at Daruma
+**Eat:** Matcha parfait at Nakamura Tokichi · Matcha soba at Tsuen Tea (est. 1160!) · Optional dessert stop at Itohkyuemon
+**Buy:** Chawan / matcha bowls · Uji loose-leaf tea · matcha sweets · tea tools
 
 ---
 
@@ -138,8 +138,8 @@
 | Time | Activity |
 |------|----------|
 | 09:00 | JR Osaka → Sannomiya (~20 min) |
-| 09:30 | **Kitano Ijinkan (異人館)** — Western-style heritage houses on hillside |
-| 11:00 | **Kobe Nunobiki Herb Garden** — ropeway with panoramic bay views |
+| 09:30 | **Kitano Ijinkan (異人館)** — Western-style heritage houses on hillside **(optional if you want a slower morning)** |
+| 11:00 | **Kobe Nunobiki Herb Garden** — ropeway with panoramic bay views **(optional if weather / energy is weak)** |
 | 12:30 | **KOBE BEEF LUNCH** — A5 Wagyu teppanyaki at Mouriya (pre-booked!) 🥩 |
 | 14:00 | Walk **Nankinmachi (Kobe Chinatown)** — Roshoki nikuman buns, bubble tea |
 | 15:00 | **Meriken Park** — Kobe Port Tower, BE KOBE sign, waterfront 📸 |
@@ -151,6 +151,7 @@
 **Eat (Kobe):** Kobe Beef at Mouriya (モーリヤ) · Nikuman at Roshoki (老祥記)
 **Buy (Kobe):** Kobe Pudding (Tōraku brand) at Harborland — region-exclusive souvenir!
 **Eat (Osaka):** A5 wagyu yakiniku at Matsusakagyu Yakiniku M
+**Tips:** If you feel rushed, skip **Kitano Ijinkan** first, then **Nunobiki Herb Garden** second. The Kobe core is lunch + Chinatown + waterfront.
 
 ---
 
