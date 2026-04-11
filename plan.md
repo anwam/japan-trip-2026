@@ -65,68 +65,71 @@
 
 ---
 
-### Day 3 — Wed, April 15 | Nara Day Trip 🦌
+### Day 3 — Wed, April 15 | Kyoto Full Day 🚅
 
 | Time | Activity |
 |------|----------|
-| 08:30 | Kintetsu Namba → Kintetsu Nara (~35 min) |
-| 09:15 | Walk through Nara Park — feed the deer (buy shika senbei ¥200) |
-| 10:00 | **Todai-ji Temple** — Great Buddha Hall (世界最大の木造建築) |
-| 11:00 | **Nigatsu-do Hall** — panoramic view of Nara |
-| 11:30 | Walk to **Kasuga Taisha** — thousands of stone lanterns |
-| 12:30 | Lunch in Naramachi (old merchant district) |
-| 14:00 | Explore **Naramachi** — traditional machiya townhouses, shops, cafes |
-| 15:00 | **Kofuku-ji Temple** — five-story pagoda |
-| 15:30 | Walk **Higashimuki Shopping Street** — souvenirs, mochi |
-| 16:30 | Train back to Osaka |
-| 17:30 | **Shinsekai district** — retro Osaka, Tsutenkaku Tower |
-| 19:00 | Dinner at Shinsekai |
-
-**Eat (Nara):** Kakinoha Sushi (persimmon leaf sushi) at Tanaka · Mochi at Nakatanidou (中谷堂) — watch the high-speed mochi pounding!
-**Eat (Shinsekai):** Kushikatsu at Daruma (串かつだるま) — deep-fried skewers, no double dipping!
-
----
-
-### Day 4 — Thu, April 16 | Kyoto Day Trip (via Shinkansen) 🚅
-
-| Time | Activity |
-|------|----------|
-| 07:30 | JR to Shin-Osaka, then **Shinkansen to Kyoto** (~15 min, experience bullet train!) |
+| 07:30 | JR to Shin-Osaka → **Shinkansen to Kyoto** (~15 min, experience the bullet train!) |
 | 08:30 | **Fushimi Inari Taisha** — thousand vermillion torii gates (go early = fewer crowds) |
-| 10:30 | Bus/train to **Kiyomizu-dera Temple** — wooden stage with city views |
-| 11:30 | Walk **Ninenzaka & Sannenzaka** — atmospheric stone-paved lanes |
-| 12:30 | Lunch in Gion area |
-| 13:30 | **Gion District** — geisha quarter, traditional tea houses |
-| 14:30 | Bus to **Kinkaku-ji** (Golden Pavilion) |
-| 15:30 | **Arashiyama Bamboo Grove** + **Togetsukyo Bridge** |
+| 10:30 | **Kiyomizu-dera Temple** — wooden stage with panoramic city views |
+| 11:30 | Walk **Ninenzaka & Sannenzaka** — atmospheric stone-paved lanes + Starbucks machiya |
+| 12:30 | Lunch + matcha dessert at Tsujiri in **Gion** area |
+| 13:30 | **Gion District** — geisha quarter, Hanamikoji Street |
+| 14:30 | **Kinkaku-ji** (Golden Pavilion) ✨ |
+| 15:30 | **Arashiyama Bamboo Grove** + Togetsukyo Bridge 🎋 |
 | 16:30 | Optional: **Tenryu-ji Temple** (UNESCO World Heritage) |
-| 17:30 | **Nishiki Market** — "Kyoto's Kitchen" — snacks, pickles, matcha treats |
+| 17:30 | **Nishiki Market** — "Kyoto's Kitchen" — snacks, pickles, Yatsuhashi mochi |
 | 19:00 | Shinkansen / JR back to Osaka |
-| 20:00 | Evening free at Namba |
 
-**Eat (Kyoto):** Ramen at Ippudo (一風堂) · Matcha desserts at Tsujiri (辻利) Gion · Yudofu (tofu hot pot) near Kiyomizu · Nishiki Market street food
+**Eat:** Ramen at Ippudo (一風堂) · Matcha parfait at Tsujiri (辻利) Gion · Nishiki Market street food
+**Buy:** Yatsuhashi mochi · Yojiya oil blotting paper (Gion) · Omamori charms from shrines
 **See:** Geisha spotting at Hanamikoji Street (early evening best) · Yasaka Shrine
 
 ---
 
-### Day 5 — Fri, April 17 | Uji + Osaka South 🍵
+### Day 4 — Thu, April 16 | Osaka Shopping Day 🛍️
 
 | Time | Activity |
 |------|----------|
-| 08:30 | Keihan or JR to **Uji** (~45 min) |
-| 09:30 | **Byodo-in Temple** — the temple on the ¥10 coin! Phoenix Hall |
-| 10:30 | Stroll along **Uji River** |
-| 11:00 | **Uji-gami Shrine** — oldest shrine building in Japan |
-| 11:30 | **Matcha tasting** on Uji Omotesando Street — Uji is THE birthplace of Japanese green tea |
-| 12:30 | Matcha lunch — soba, parfait, everything matcha |
-| 14:00 | Return to Osaka |
-| 14:30 | **Osaka Castle** + Nishinomaru Garden (cherry blossoms may linger) |
-| 16:00 | **Kuromon Market** — "Osaka's Kitchen" — fresh sashimi, tamagoyaki, fruit |
-| 17:30 | Walk to **Namba Parks** — terraced rooftop garden |
-| 18:30 | Dinner at Namba |
+| 09:30 | **Shinsaibashi-suji** — 600m covered arcade, fashion & cosmetics |
+| 10:30 | **Daimaru Shinsaibashi** — basement food hall: Baton d'Or, matcha sweets, gift-box omiyage |
+| 11:30 | **Takashimaya Namba** — tax-free floor, Kit Kat Japan exclusives, luxury goods |
+| 12:30 | Lunch — **Gram Cafe** soufflé pancakes (queue 30 min before 11:00 or 15:00 session!) |
+| 13:30 | **Amerikamura** — vintage clothing, vinyl, streetwear, secondhand finds |
+| 15:00 | **Don Quijote (Dotonbori)** — cosmetics, Kit Kats, snacks, face masks, Japanese whisky |
+| 16:30 | **Den Den Town (Nipponbashi)** — capsule toys, anime figures, stationery, retro games |
+| 18:00 | **Kuromon Market** — fresh sashimi & tamagoyaki for evening snacking |
+| 19:00 | Dinner at **Hozenji Yokocho** — atmospheric stone alley, kappo restaurants |
 
-**Eat (Uji):** Matcha parfait at Nakamura Tokichi (中村藤吉本店) · Matcha soba at Tsuen Tea (通圓) — operating since 1160!
-**Eat (Osaka):** Fresh sashimi at Kuromon Market · Street food walk
+**Buy:** Kit Kat exclusives · Baton d'Or Pocky (Daimaru B1) · CANMAKE/Kate cosmetics · Japanese stationery (Jetstream pens, Kuru Toga) · LuLuLun face masks · Capsule toys · Anime figures
+**Tips:** Bring passport for tax-free (¥5,000+). Daimaru B1–B2 basement is the best food souvenir floor.
+
+---
+
+### Day 5 — Fri, April 17 | Uji + Nara 🍵🦌
+
+> 💡 **Why this combo works:** Uji and Nara are both east of Osaka. Connect directly by JR (Uji → Kizu → Nara, ~50 min, ¥400) without backtracking. Start Uji early — Byodo-in opens at 08:30!
+
+| Time | Activity |
+|------|----------|
+| 07:30 | Depart hotel — JR Namba → Uji (~45 min) |
+| 08:30 | **Byodo-in Temple** — the temple on the ¥10 coin! Phoenix Hall 🪙 |
+| 09:30 | Stroll **Uji River** + **Uji-gami Shrine** — oldest shrine building in Japan |
+| 10:00 | **Nakamura Tokichi** — matcha parfait & Nama Cha Jelly (arrive early to beat the queue!) |
+| 11:00 | **Uji Omotesando Street** — matcha tasting, pick up premium Uji tea as omiyage |
+| 12:00 | Lunch at **Tsuen Tea** (est. 1160!) — matcha soba set |
+| 13:00 | JR Uji → Kizu → JR Nara (~50 min) |
+| 14:00 | **Nara Park** — feed the deer 🦌 (shika senbei ¥200) |
+| 14:30 | **Todai-ji Temple** — Great Buddha Hall, world's largest wooden building |
+| 15:30 | **Kasuga Taisha** — 3,000 stone & bronze lanterns ⛩️ |
+| 16:30 | **Nakatanidou** — watch lightning-fast mochi pounding! (¥200 each) 🍡 |
+| 17:00 | Kintetsu Nara → Osaka Namba (~38 min) |
+| 18:00 | **Shinsekai district** — Tsutenkaku Tower, retro Osaka atmosphere |
+| 19:00 | Dinner — **Kushikatsu Daruma** (no double-dipping!) |
+
+**Eat (Uji):** Matcha parfait at Nakamura Tokichi · Matcha soba at Tsuen Tea (est. 1160!)
+**Eat (Nara):** Speed-pound mochi at Nakatanidou · Kakinoha Sushi at Tanaka
+**Eat (Osaka):** Kushikatsu at Daruma
 
 ---
 
@@ -137,36 +140,37 @@
 | 09:00 | JR Osaka → Sannomiya (~20 min) |
 | 09:30 | **Kitano Ijinkan (異人館)** — Western-style heritage houses on hillside |
 | 11:00 | **Kobe Nunobiki Herb Garden** — ropeway with panoramic bay views |
-| 12:30 | **KOBE BEEF LUNCH** — splurge on A5 Wagyu (reserve ahead!) |
-| 14:00 | Walk **Nankinmachi (Kobe Chinatown)** — nikuman buns, bubble tea |
-| 15:00 | **Meriken Park** — Kobe Port Tower, BE KOBE sign, waterfront |
-| 16:00 | **Kobe Harborland / Mosaic** — shopping, bay views |
+| 12:30 | **KOBE BEEF LUNCH** — A5 Wagyu teppanyaki at Mouriya (pre-booked!) 🥩 |
+| 14:00 | Walk **Nankinmachi (Kobe Chinatown)** — Roshoki nikuman buns, bubble tea |
+| 15:00 | **Meriken Park** — Kobe Port Tower, BE KOBE sign, waterfront 📸 |
+| 16:00 | **Kobe Harborland / Mosaic** — pick up Kobe Pudding (Tōraku brand), bay views |
 | 17:30 | Return to Osaka |
-| 18:00 | **Amerikamura (Amemura)** — Osaka's youth fashion district, vinyl shops |
-| 19:00 | **Shinsaibashi-suji Shopping Street** — 600m covered arcade |
-| 20:00 | Final big dinner in Dotonbori |
+| 18:30 | **Dotonbori Evening Walk** — farewell stroll along the canal |
+| 19:30 | Final big dinner — Yakiniku at **Matsusakagyu Yakiniku M** |
 
-**Eat (Kobe):** Kobe Beef at Mouriya (モーリヤ) or Steak Aoyama · Nikuman at Roshoki (老祥記)
-**Eat (Osaka):** Yakiniku at Matsusakagyu Yakiniku M (Namba) · Late-night ramen
+**Eat (Kobe):** Kobe Beef at Mouriya (モーリヤ) · Nikuman at Roshoki (老祥記)
+**Buy (Kobe):** Kobe Pudding (Tōraku brand) at Harborland — region-exclusive souvenir!
+**Eat (Osaka):** A5 wagyu yakiniku at Matsusakagyu Yakiniku M
 
 ---
 
-### Day 7 — Sun, April 19 | Namba Shopping + Departure ✈️
+### Day 7 — Sun, April 19 | Last Bites + Departure ✈️
 
 | Time | Activity |
 |------|----------|
 | 09:00 | Sleep in, hotel breakfast |
-| 10:00 | **Namba/Shinsaibashi shopping** — last-minute souvenirs |
-| 10:30 | **Donki (Don Quijote)** — snacks, cosmetics, quirky gifts |
-| 11:00 | **Daimaru / Takashimaya** department stores (tax-free floor) |
-| 12:00 | Lunch |
-| 13:00 | **Nipponbashi / Den Den Town** — Osaka's Akihabara, electronics, anime, figures |
-| 14:30 | **Hozenji Yokocho Alley** — atmospheric stone alley, moss-covered statue |
-| 15:00 | Final matcha/coffee break |
-| 15:30 | Return to hotel, pack & check out |
-| 16:30 | Nankai Rapi:t to KIX (~38 min) |
-| 17:15 | Arrive KIX — tax-free last shopping at airport |
-| 19:55 | Depart KIX → DMK |
+| 10:00 | **Rikuro Ojisan** (Namba branch) — buy jiggly cheesecake to take home 🎂 |
+| 10:30 | **Don Quijote** — any last-minute snacks, cosmetics, or missed gifts |
+| 11:30 | **Hozenji Yokocho** — final photos, moss-covered Mizukake Fudo statue |
+| 12:00 | Farewell lunch — **Ichiran Ramen** (solo booth, final bowl) 🍜 |
+| 13:30 | Return to hotel — pack remaining bags, check out |
+| 15:00 | Head to Namba Station |
+| 15:30 | Nankai Rapi:t Express → KIX (~38 min) |
+| 16:10 | Arrive KIX — check in (2.5 hrs before flight) |
+| 16:30 | Duty-free: **Royce Nama Chocolate**, Tokyo Banana, whisky, Kit Kats |
+| 19:55 | Depart KIX → DMK 🌸✈️ |
+
+**Buy at KIX:** Royce Nama Chocolate (refrigerated near gate) · Tokyo Banana · Matcha Kit Kats · Japanese whisky
 
 ---
 
