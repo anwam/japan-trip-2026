@@ -66,29 +66,7 @@
 
 ---
 
-### Day 3 — Wed, April 15 | Kyoto Full Day 🚅
-
-| Time | Activity |
-|------|----------|
-| 07:30 | JR to Shin-Osaka → **Shinkansen to Kyoto** (~15 min, experience the bullet train!) |
-| 08:30 | **Fushimi Inari Taisha** — thousand vermillion torii gates (go early = fewer crowds) |
-| 10:30 | **Kiyomizu-dera Temple** — wooden stage with panoramic city views |
-| 11:30 | Walk **Ninenzaka & Sannenzaka** — atmospheric stone-paved lanes + Starbucks machiya |
-| 12:30 | Lunch + matcha dessert at Tsujiri in **Gion** area |
-| 13:30 | **Gion District** — geisha quarter, Hanamikoji Street |
-| 14:30 | **Kinkaku-ji** (Golden Pavilion) ✨ |
-| 15:30 | **Arashiyama Bamboo Grove** + Togetsukyo Bridge 🎋 |
-| 16:30 | Optional: **Tenryu-ji Temple** (UNESCO World Heritage) |
-| 17:30 | **Nishiki Market** — "Kyoto's Kitchen" — snacks, pickles, Yatsuhashi mochi |
-| 19:00 | Shinkansen / JR back to Osaka |
-
-**Eat:** Ramen at Ippudo (一風堂) · Matcha parfait at Tsujiri (辻利) Gion · Nishiki Market street food
-**Buy:** Yatsuhashi mochi · Yojiya oil blotting paper (Gion) · Omamori charms from shrines
-**See:** Geisha spotting at Hanamikoji Street (early evening best) · Yasaka Shrine
-
----
-
-### Day 4 — Thu, April 16 | Osaka Shopping + Nara Half Day 🛍️🦌
+### Day 3 — Wed, April 15 | Osaka Shopping + Nara Half Day 🛍️🦌
 
 | Time | Activity |
 |------|----------|
@@ -107,6 +85,28 @@
 **Buy:** Kit Kat exclusives · Baton d'Or Pocky (Daimaru B1) · CANMAKE/Kate cosmetics · Japanese stationery (Jetstream pens, Kuru Toga) · LuLuLun face masks
 **Eat:** Nakatanidou mochi · Hozenji Yokocho dinner
 **Tips:** Bring passport for tax-free (¥5,000+). This is the best place to compress Osaka shopping while still keeping Nara worthwhile as a half day.
+
+---
+
+### Day 4 — Thu, April 16 | Kyoto Full Day 🚅
+
+| Time | Activity |
+|------|----------|
+| 07:30 | JR to Shin-Osaka → **Shinkansen to Kyoto** (~15 min, experience the bullet train!) |
+| 08:30 | **Fushimi Inari Taisha** — thousand vermillion torii gates (go early = fewer crowds) |
+| 10:30 | **Kiyomizu-dera Temple** — wooden stage with panoramic city views |
+| 11:30 | Walk **Ninenzaka & Sannenzaka** — atmospheric stone-paved lanes + Starbucks machiya |
+| 12:30 | Lunch + matcha dessert at Tsujiri in **Gion** area |
+| 13:30 | **Gion District** — geisha quarter, Hanamikoji Street |
+| 14:30 | **Kinkaku-ji** (Golden Pavilion) ✨ |
+| 15:30 | **Arashiyama Bamboo Grove** + Togetsukyo Bridge 🎋 |
+| 16:30 | Optional: **Tenryu-ji Temple** (UNESCO World Heritage) |
+| 17:30 | **Nishiki Market** — "Kyoto's Kitchen" — snacks, pickles, Yatsuhashi mochi |
+| 19:00 | Shinkansen / JR back to Osaka |
+
+**Eat:** Ramen at Ippudo (一風堂) · Matcha parfait at Tsujiri (辻利) Gion · Nishiki Market street food
+**Buy:** Yatsuhashi mochi · Yojiya oil blotting paper (Gion) · Omamori charms from shrines
+**See:** Geisha spotting at Hanamikoji Street (early evening best) · Yasaka Shrine
 
 ---
 
